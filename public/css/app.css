@@ -1,0 +1,36 @@
+#culturedim_check,
+#criticalfact_check,
+#balancecard_check,
+#option_check{
+    width: 20px;
+}
+
+.navbar-brand img{
+   height: 50px;
+}
+
+.error-add {
+    position: absolute;
+    bottom: -20px;
+}
+
+.remove_btn{
+    margin-bottom: 5px;
+}
+
+#field0{
+    display: none;
+}
+
+.question_form,
+.additional_form{
+    display: none;
+}
+
+.badge{
+    font-size: 16px;
+}
+
+.detail_value{
+    padding: 10px 0;
+}
