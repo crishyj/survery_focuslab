@@ -1,7 +1,9 @@
 #culturedim_check,
 #criticalfact_check,
 #balancecard_check,
-#option_check{
+#option_check,
+#name_check,
+#surveydate_check{
     width: 20px;
 }
 

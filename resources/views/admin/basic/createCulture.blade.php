@@ -29,7 +29,6 @@
                             <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Culture Description') }}</label>
 
                             <div class="col-md-6">
-                                {{-- <input id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" required autocomplete="description" autofocus> --}}
                                 <textarea name="description" id="description" cols="30" rows="5" class="form-control @error('description') is-invalid @enderror" autocomplete="description" autofocus>{{ old('description') }}</textarea>
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
@@ -57,7 +56,6 @@
                             <label for="leader_desc" class="col-md-4 col-form-label text-md-right">{{ __('Leader Description') }}</label>
 
                             <div class="col-md-6">
-                                {{-- <input id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" required autocomplete="description" autofocus> --}}
                                 <textarea name="leader_desc" id="leader_desc" cols="30" rows="5" class="form-control @error('leader_desc') is-invalid @enderror" autocomplete="leader_desc" autofocus>{{ old('leader_desc') }}</textarea>
                                 @error('leader_desc')
                                     <span class="invalid-feedback" role="alert">

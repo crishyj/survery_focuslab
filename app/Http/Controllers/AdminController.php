@@ -102,6 +102,16 @@ class AdminController extends Controller
         return view('admin.basic.viewCulture', compact('cultures'));
     }
 
+    public function updateCulture(Request $request){
+        $options = Culture::find($request->get('id'));
+        $options->name = $request->get('name');
+        $options->description = $request->get('description');
+        $options->leader = $request->get('leader');
+        $options->leader_desc = $request->get('leader_desc');
+        $options->save();
+        return response()->json('success');
+    }
+
     
     public function cultureDelete($id){
         $options = Culture::find($id);
@@ -138,6 +148,12 @@ class AdminController extends Controller
         return view('admin.basic.viewModel', compact('models'));
     }
 
+    public function updateModel(Request $request){
+        $options = Modelnew::find($request->get('id'));
+        $options->name = $request->get('name');       
+        $options->save();
+        return response()->json('success');
+    }
     
     public function ModelDelete($id){
         $options = Modelnew::find($id);
@@ -171,6 +187,13 @@ class AdminController extends Controller
     public function viewComponent(){
         $components = Component::all();
         return view('admin.basic.viewComponent', compact('components'));
+    }
+
+    public function updateComponent(Request $request){
+        $options = Component::find($request->get('id'));
+        $options->name = $request->get('name');       
+        $options->save();
+        return response()->json('success');
     }
 
     
@@ -406,59 +429,48 @@ class AdminController extends Controller
 
     public function storeSurvey(Request $request){        
         $request->validate([
-            'name' => ['required', 'string', 'max:255', 'unique:modelanlayses'],
             'client_id' => ['required'],
             'project_id' => ['required'],
             'description' => ['required', 'string'],
             'start' => ['required'],
             'end' => ['required'],
-            'company' => ['required'],
-            'city' => ['required'],
-            'companyarea' => ['required'],
-            'companylevel' => ['required'],
-            'companyjob' => ['required'],
-            'surveydate' => ['required'],
             'code' => ['required'],
         ]); 
         
-        if(count(Survey::where('name', '=', $request['name'])->get())<1){
-            $options = new Survey([
-                'name' => $request['name'],
-                'client_id' => $request['client_id'],
-                'project_id' => $request['project_id'],
-                'description' => $request['description'],
-                'start' => $request['start'],
-                'end' => $request['end'],
-                'culturedim_check' => $request['culturedim_check'],
-                'criticalfact_check' => $request['criticalfact_check'],
-                'balancecard_check' => $request['balancecard_check'],
-                'company' => $request['company'],
-                'company_check' => $request['company_check'],
-                'city' => $request['city'],
-                'city_check' => $request['city_check'],
-                'companyarea' => $request['companyarea'],
-                'companyarea_check' => $request['companyarea_check'],
-                'companylevel' => $request['companylevel'],
-                'companylevel_check' => $request['companylevel_check'],
-                'companyjob' => $request['companyjob'],
-                'companylevel_check' => $request['companylevel_check'],
-                'companyjob_check' => $request['companyjob_check'],
-                'surveydate' => $request['surveydate'],
-                'surveydate_check' => $request['surveydate_check'],
-                'code' => $request['code'],
-            ]);
-            $options->save();   
+        $options = new Survey([
+            'client_id' => $request['client_id'],
+            'project_id' => $request['project_id'],
+            'description' => $request['description'],
+            'start' => $request['start'],
+            'end' => $request['end'],
+            'culturedim_check' => $request['culturedim_check'],
+            'criticalfact_check' => $request['criticalfact_check'],
+            'balancecard_check' => $request['balancecard_check'],
+            'name_check' => $request['name_check'],
+            'company' => $request['company'],
+            'company_check' => $request['company_check'],
+            'city' => $request['city'],
+            'city_check' => $request['city_check'],
+            'companyarea' => $request['companyarea'],
+            'companyarea_check' => $request['companyarea_check'],
+            'companylevel' => $request['companylevel'],
+            'companylevel_check' => $request['companylevel_check'],
+            'companyjob' => $request['companyjob'],
+            'companylevel_check' => $request['companylevel_check'],
+            'companyjob_check' => $request['companyjob_check'],
+            'surveydate_check' => $request['surveydate_check'],
+            'code' => $request['code'],
+        ]);
+        $options->save();   
 
-            $survey_id = Survey::where('name', '=', $request['name'])->first()->id;
-            $question_id = Project::find($request['project_id'])->question;
-            $questions = Evaluation::pluck($question_id);
-            $questions->push($survey_id);
-            // dd($questions);
+        $survey_id = Survey::where('name', '=', $request['name'])->first()->id;
+        $question_id = Project::find($request['project_id'])->question;
+        $questions = Evaluation::pluck($question_id);
+        $questions->push($survey_id);
+        // dd($questions);
 
-            return response()->json(['success'=>$questions]);
-        }else{            
-            return response()->json('failed');
-        }  
+        return response()->json(['success'=>$questions]);
+       
     }
 
     public function storeQuestion(Request $request){

@@ -28,12 +28,12 @@
                             <div class="collapse show" id="navbar-basic" style="">
                                 <ul class="nav nav-sm flex-column">
 
-                                    <li class="nav-item">
+                                    {{-- <li class="nav-item">
                                         <a class="nav-link collapsed" href="{{ route('parameters') }}" role="button"  aria-controls="navbar-dashboards">
                                             <i class="ni ni-book-bookmark text-primary"></i>
                                             <span class="nav-link-text">{{ __('Basic Parameters') }}</span>
                                         </a>  
-                                    </li>
+                                    </li> --}}
                                     
                                     <li class="nav-item">
                                         <a class="nav-link collapsed" href="{{ route('viewCulture') }}" role="button"  aria-controls="navbar-dashboards">
@@ -113,10 +113,10 @@
                         </li> 
                         
                         <li class="nav-item ">
-                            <a href="#navbar-client" class="nav-link" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-multilevel">
+                            <a href="#navbar-survey" class="nav-link" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-multilevel">
                                 {{ __('Surveys') }}
                             </a>
-                            <div class="collapse" id="navbar-client" style="">
+                            <div class="collapse" id="navbar-survey" style="">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
                                         <a class="nav-link collapsed" href="{{ route('createSurvey') }}" role="button"  aria-controls="navbar-dashboards">

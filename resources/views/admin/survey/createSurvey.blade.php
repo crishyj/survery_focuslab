@@ -121,31 +121,15 @@
                             <div class="col-md-6">
                                 <input type="checkbox" class="form-control" id="balancecard_check" name="balancecard_check" autocomplete="balancecard_check" autofocus>                                
                             </div>
-                        </div>                       
-
+                        </div>    
+                        
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">
-                                {{ __('Name') }}
-                            </label>
-
-                            <div class="input-group col-md-6">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                    <input type="checkbox" id="balancecard_check" name="name_check">
-                                    </div>
-                                </div>
-                                <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" autocomplete="name" autofocus>
-                                <span class="invalid-feedback" role="alert">
-                                   <b> This name already registerd. </b>
-                                </span>
+                            <label class="col-md-4 col-form-label text-md-right" for="name_check">Name</label>
+                            <div class="col-md-6">
+                                <input type="checkbox" class="form-control" id="name_check" name="name_check" autocomplete="name_check" autofocus>                                
                             </div>
-                            
-                            @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
+                        </div>                       
+                        
 
                         <div class="form-group row">
                             <label for="company" class="col-md-4 col-form-label text-md-right">
@@ -220,22 +204,14 @@
                               </div>
                               <input type="text" name="companyjob" id="companyjob" class="form-control @error('companyjob') is-invalid @enderror" value="{{ old('companyjob') }}" autocomplete="companyjob" autofocus>
                             </div>
-                        </div>
+                        </div>                       
 
                         <div class="form-group row">
-                            <label for="companyarea" class="col-md-4 col-form-label text-md-right">
-                                {{ __('Survey Date') }}
-                            </label>
-
-                            <div class="input-group col-md-6">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                  <input type="checkbox" id="surveydate_check" name="surveydate_check">
-                                </div>
-                              </div>
-                              <input type="date" name="surveydate" id="surveydate" class="form-control @error('surveydate') is-invalid @enderror" value="{{ old('surveydate') }}" autocomplete="surveydate" autofocus>
+                            <label class="col-md-4 col-form-label text-md-right" for="surveydate_check">Date</label>
+                            <div class="col-md-6">
+                                <input type="checkbox" class="form-control" id="surveydate_check" name="surveydate_check" autocomplete="surveydate_check" autofocus>                                
                             </div>
-                        </div>
+                        </div>    
 
                         
                         <div class="form-group row">
@@ -295,13 +271,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-5">
-                              <button id="add-more" name="add-more" class="btn btn-primary">Add More</button>
-                            </div>
-                        </div>
+                            
+                        </div>                       
 
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-5">
@@ -374,7 +345,6 @@
     </div>
 </div>
 @endsection
-{{-- {{ route('storeSurvey') }} --}}
 
 @push('js')
 <script>
@@ -466,17 +436,11 @@
                             $('question0').val(questions[0]);
                             for(j = 0; j < i-1; j++){
                                 var addto = "#field" + next;
-                                // var addRemove = "#field" + (next);
                                 next = next + 1;
                                 var newIn = ' <div id="field'+ next +'" name="field'+ next +'"><div class="form-group row"><label for="question'+next+'" class="col-md-4 col-form-label text-md-right">Question'+next+'</label><div class="input-group col-md-6"><div class="input-group-prepend"><div class="input-group-text"><input type="checkbox" id="question_check'+next+'" name="question_check'+next+'"></div></div><input type="text" name="question'+next+'" id="question'+next+'" class="form-control input-md" value="'+questions[j]+'" autocomplete="question'+next+'" autofocus></div></div></div>';
                                 var newInput = $(newIn);
-                                // next = next + 1;
-                                // var removeBtn = '<div class="form-group row"><div class="remove_btn col-md-6 offset-md-5"><button id="remove' + (next-1) + '" class="btn btn-danger remove-me" >Remove</button><div></div></div></div><div id="field">';
-                                // var removeButton = $(removeBtn);
                                 $(addto).after(newInput);
-                                // $(addRemove).after(removeButton);
                                 $("#field" + next).attr('data-source',$(addto).attr('data-source'));
-                                // $("#count").val(next);
                             }                           
                         }
                 },
@@ -494,31 +458,7 @@
                 }
             });
         });
-
-
-        $("#add-more").click(function(e){
-            e.preventDefault();
-            var addto = "#field" + next;
-            // var addRemove = "#field" + (next);
-            next = next + 1;
-            var newIn = ' <div id="field'+ next +'" name="field'+ next +'"><div class="form-group row"><label for="question'+next+'" class="col-md-4 col-form-label text-md-right">Question'+next+'</label><div class="input-group col-md-6"><div class="input-group-prepend"><div class="input-group-text"><input type="checkbox" id="question_check'+next+'" name="question_check'+next+'"></div></div><input type="text" name="question'+next+'" id="question'+next+'" class="form-control input-md" value="" autocomplete="question'+next+'" autofocus></div></div></div>';
-            var newInput = $(newIn);
-            // var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >Remove</button></div></div>';
-            // var removeButton = $(removeBtn);
-            $(addto).after(newInput);
-            // $(addRemove).after(removeButton);
-            $("#field" + next).attr('data-source',$(addto).attr('data-source'));
-            $("#count").val(next);  
-            
-            $('.remove-me').click(function(e){
-                e.preventDefault();
-                var fieldNum = parseInt(this.id.charAt(this.id.length-1));
-                var fieldID = "#field" + fieldNum;
-                alert(fieldID);
-                $(this).remove();
-                $(fieldID).remove();
-            });
-        });
+      
 
         $('#question_submit').click(function(e){
             e.preventDefault();

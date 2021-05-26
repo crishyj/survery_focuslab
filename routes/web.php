@@ -18,6 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/answer/{id}', [App\Http\Controllers\AnswerContoller::class, 'index'])->name('answerSurvey');
+Route::post('/answer/{id}', [App\Http\Controllers\AnswerContoller::class, 'checkCode'])->name('checkCode');
 
 Auth::routes();
 
@@ -37,16 +39,19 @@ Route::group(['middleware' => ['Role']], function () {
     Route::get('/createCulture', [App\Http\Controllers\AdminController::class, 'createCulture'])->name('createCulture');
     Route::post('/createCulture', [App\Http\Controllers\AdminController::class, 'storeCulture'])->name('storeCulture');
     Route::get('/viewCulture', [App\Http\Controllers\AdminController::class, 'viewCulture'])->name('viewCulture');
+    Route::post('/viewCulture', [App\Http\Controllers\AdminController::class, 'updateCulture'])->name('updateCulture');
     Route::get('/viewCulture/{id}', [App\Http\Controllers\AdminController::class, 'cultureDelete'])->name('cultureDelete');
     
     Route::get('/createModel', [App\Http\Controllers\AdminController::class, 'createModel'])->name('createModel');
     Route::post('/createModel', [App\Http\Controllers\AdminController::class, 'storeModel'])->name('storeModel');
     Route::get('/viewModel', [App\Http\Controllers\AdminController::class, 'viewModel'])->name('viewModel');
+    Route::post('/viewModel', [App\Http\Controllers\AdminController::class, 'updateModel'])->name('updateModel');
     Route::get('/viewModel/{id}', [App\Http\Controllers\AdminController::class, 'modelDelete'])->name('modelDelete');
 
     Route::get('/createComponent', [App\Http\Controllers\AdminController::class, 'createComponent'])->name('createComponent');
     Route::post('/createComponent', [App\Http\Controllers\AdminController::class, 'storeComponent'])->name('storeComponent');
     Route::get('/viewComponent', [App\Http\Controllers\AdminController::class, 'viewComponent'])->name('viewComponent');
+    Route::post('/viewComponent', [App\Http\Controllers\AdminController::class, 'updateComponent'])->name('updateComponent');
     Route::get('/viewComponent/{id}', [App\Http\Controllers\AdminController::class, 'componentDelete'])->name('componentDelete');
     
     Route::get('/createAttribute', [App\Http\Controllers\AdminController::class, 'createAttribute'])->name('createAttribute');
