@@ -110,7 +110,6 @@
 <script src="{{ asset('argon') }}/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
 <script src="{{ asset('argon') }}/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
 
-
 <script>
     $(document).ready(function(){
         $(document).on('click', '.modal-btn2', function (){
@@ -120,6 +119,10 @@
             $("#edit_form .id").val(id);
             $("#edit_form .name").val(name);                
             $("#editModal").modal();
+        });
+
+        $("#edit_form").submit(function(e){
+            e.preventDefault();
         });
 
         $("#edit_form .btn-submit").click(function(){
@@ -154,9 +157,6 @@
                     if(response.responseJSON.message == 'The given data was invalid.'){                            
                         let messages = response.responseJSON.errors;
                         if(messages.option) {
-                            // $('#edit_form .option_error strong').text(messages.option[0]);
-                            // $('#edit_form .option_error').show();
-                            // $('#edit_form .option').focus();
                         }
                         alert("Something went wrong");
                         window.location.reload();        

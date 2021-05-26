@@ -176,6 +176,10 @@
             $("#editModal").modal();
         });
 
+        $("#edit_form").submit(function(e){
+            e.preventDefault();
+        });
+
         $("#edit_form .btn-submit").click(function(){
             let _token = $('input[name=_token]').val();
             let id = $('#id1').val();
@@ -225,8 +229,6 @@
                 }
             });
         });
-
-
     });
 </script>
 @endpush

@@ -237,6 +237,15 @@ class AdminController extends Controller
         return view('admin.basic.viewAttribute', compact('options', 'models'));
     }
 
+    public function updateAttribute(Request $request){
+        $options = Attribute::find($request->get('id'));
+        $options->name = $request->get('name');
+        $options->model_id = $request->get('model_id');
+        $options->order = $request->get('order');
+        $options->save();
+        return response()->json('success');
+    }
+
     
     public function attributeDelete($id){
         $options = Attribute::find($id);
@@ -292,6 +301,30 @@ class AdminController extends Controller
         return view('admin.basic.viewProject', compact('options'));
     }
 
+    public function updateProject(Request $request){
+        $options = Project::find($request->get('id'));
+        switch ($request->get('question')) {
+            case 'fquestion':
+                    $label = 'PREGUNTA EN PRIMERA PERSONA';
+                break;
+            case 'squestion':
+                    $label = 'PREGUNTA EN TERCERA PERSONA';
+                break;
+            case 'tquestion':
+                    $label = 'PREGUNTA ORGANIZACION';
+                break;
+            default:
+                    $label = '';
+                break;
+        }
+        $options->name = $request->get('name');
+        $options->question = $request->get('question');
+        $options->heading = $request->get('heading');
+        $options->label =  $label;
+        $options->save();
+        return response()->json('success');
+    }
+
     
     public function projectDelete($id){
         $options = Project::find($id);
@@ -335,6 +368,17 @@ class AdminController extends Controller
         $options = Evaluation::all();
         $components = Component::all();
         return view('admin.basic.viewEvalution', compact('options', 'components'));
+    }
+
+    public function updateEvalution(Request $request){
+        $options = Evaluation::find($request->get('id'));
+        $options->name = $request->get('name');
+        $options->component_id = $request->get('component_id');
+        $options->fquestion = $request->get('fquestion');
+        $options->squestion = $request->get('squestion');
+        $options->tquestion = $request->get('tquestion');
+        $options->save();
+        return response()->json('success');
     }
 
     
@@ -391,6 +435,18 @@ class AdminController extends Controller
         $models = Modelnew::all();
         $defanswers = Defanswers::all();
         return view('admin.basic.viewModelanalysis', compact('options', 'evaluations', 'models', 'attributes', 'cultures', 'defanswers'));
+    }
+
+    public function updateModelanalysis(Request $request){
+        $options = Modelanlaysis::find($request->get('id'));
+        $options->name = $request->get('name');
+        $options->evaluation_id = $request->get('evaluation_id');
+        $options->model_id = $request->get('model_id');
+        $options->attribute_id = $request->get('attribute_id');
+        $options->culture_id = $request->get('culture_id');
+        $options->answer = $request->get('answer');
+        $options->save();
+        return response()->json('success');
     }
 
     

@@ -57,21 +57,25 @@ Route::group(['middleware' => ['Role']], function () {
     Route::get('/createAttribute', [App\Http\Controllers\AdminController::class, 'createAttribute'])->name('createAttribute');
     Route::post('/createAttribute', [App\Http\Controllers\AdminController::class, 'storeAttribute'])->name('storeAttribute');
     Route::get('/viewAttribute', [App\Http\Controllers\AdminController::class, 'viewAttribute'])->name('viewAttribute');
+    Route::post('/viewAttribute', [App\Http\Controllers\AdminController::class, 'updateAttribute'])->name('updateAttribute');
     Route::get('/viewAttribute/{id}', [App\Http\Controllers\AdminController::class, 'attributeDelete'])->name('attributeDelete');
 
     Route::get('/createProject', [App\Http\Controllers\AdminController::class, 'createProject'])->name('createProject');
     Route::post('/createProject', [App\Http\Controllers\AdminController::class, 'storeProject'])->name('storeProject');
     Route::get('/viewProject', [App\Http\Controllers\AdminController::class, 'viewProject'])->name('viewProject');
+    Route::post('/viewProject', [App\Http\Controllers\AdminController::class, 'updateProject'])->name('updateProject');
     Route::get('/viewProject/{id}', [App\Http\Controllers\AdminController::class, 'projectDelete'])->name('projectDelete');
     
     Route::get('/createEvalution', [App\Http\Controllers\AdminController::class, 'createEvalution'])->name('createEvalution');
     Route::post('/createEvalution', [App\Http\Controllers\AdminController::class, 'storeEvalution'])->name('storeEvalution');
     Route::get('/viewEvalution', [App\Http\Controllers\AdminController::class, 'viewEvalution'])->name('viewEvalution');
+    Route::post('/viewEvalution', [App\Http\Controllers\AdminController::class, 'updateEvalution'])->name('updateEvalution');
     Route::get('/viewEvalution/{id}', [App\Http\Controllers\AdminController::class, 'evalutionDelete'])->name('evalutionDelete');
      
     Route::get('/createModelanalysis', [App\Http\Controllers\AdminController::class, 'createModelanalysis'])->name('createModelanalysis');
     Route::post('/createModelanalysis', [App\Http\Controllers\AdminController::class, 'storeModelanalysis'])->name('storeModelanalysis');
     Route::get('/viewModelanalysis', [App\Http\Controllers\AdminController::class, 'viewModelanalysis'])->name('viewModelanalysis');
+    Route::post('/viewModelanalysis', [App\Http\Controllers\AdminController::class, 'updateModelanalysis'])->name('updateModelanalysis');
     Route::get('/viewModelanalysis/{id}', [App\Http\Controllers\AdminController::class, 'modelanalysisDelete'])->name('modelanalysisDelete');
 
     Route::get('/parameters', [App\Http\Controllers\AdminController::class, 'parameters'])->name('parameters');
