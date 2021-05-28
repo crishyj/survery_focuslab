@@ -50,7 +50,7 @@
                                             </h3>
                                         </div>
 
-                                    <div class="row mb-4">
+                                    {{-- <div class="row mb-4">
                                         <div class="col-12">
                                             <div class="progress-wrapper ">                                               
                                                 <div class="progress">
@@ -58,7 +58,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                    
                                     
                                         @if ($option->name_check == 'on')
@@ -172,7 +172,7 @@
                                         <div class="col-12">
                                             <div class="progress-wrapper ">                                               
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">50%</div>
+                                                    <div class="progress-bar bg-info" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">25%</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -225,7 +225,7 @@
                                         </h3>
                                     </div>
 
-                                    <div class="row mb-4">
+                                    {{-- <div class="row mb-4">
                                         <div class="col-12">
                                             <div class="progress-wrapper ">                                               
                                                 <div class="progress">
@@ -233,7 +233,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                     @php $j = 1; @endphp  
                                     @foreach ($addquesions as $item)

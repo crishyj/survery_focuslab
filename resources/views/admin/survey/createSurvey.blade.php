@@ -689,7 +689,9 @@
                     console.log(response);
                     if (response == 'success'){                        
                         $(".additional_form").trigger("reset");
-                        $('#option_check').prop('checked', false);                       
+                        $('#option_check').prop('checked', false);   
+                        $('.option_area').css('display', 'none'); 
+                        option_check = '';                   
                         $('.complete_btn_area').css('display', 'block');
                     }
                 },
