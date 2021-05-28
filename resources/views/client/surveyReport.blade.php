@@ -15,7 +15,8 @@
                         </div>
                         <table class="table align-items-center table-flush text-center"  id="datatable-basic">
                             <thead class="thead-light">
-                                <tr>                                   
+                                <tr>    
+                                    <th scope="col">{{ __(' ID ') }}</th>                               
                                     <th scope="col">{{ __(' User Name') }}</th>                                     
                                     <th scope="col">{{ __(' Company') }}</th> 
                                     <th scope="col">{{ __(' City') }}</th> 
@@ -27,7 +28,11 @@
                             </thead>
                             <tbody>
                                 @foreach ($suranswers as $option)
-                                    <tr>                                               
+                                    <tr>
+                                        <td>
+                                            {{-- {{ Request::segment(2) }}  --}}
+                                            {{ $option->id }}
+                                         </td>                                               
                                         <td>
                                             @if ($option->user_name != 'undefined')
                                                 {{ $option->user_name }}
@@ -95,8 +100,10 @@
                         </div>
                         <table class="table align-items-center table-flush text-center"  id="datatable-basic1">
                             <thead class="thead-light">
-                                <tr>                                   
-                                    <th scope="col">{{ __(' Questions') }}</th>                                     
+                                <tr>                             
+                                    <th scope="col">{{ __(' Evaluation Name') }}</th>
+                                    <th scope="col">{{ __(' Component') }}</th>
+                                    <th scope="col">{{ __(' Questions') }}</th>      
                                     <th scope="col">{{ __(' Casi nunca') }}</th> 
                                     <th scope="col">{{ __(' Algunas veces') }}</th> 
                                     <th scope="col">{{ __(' Casi siempre') }}</th>
@@ -105,7 +112,13 @@
                             </thead>
                             <tbody>
                                 @foreach ($questions as $option)
-                                    <tr>                                               
+                                    <tr>       
+                                        <td>
+                                            {{$option->evaluation->name ?? ''}}
+                                        </td>
+                                        <td>
+                                            {{$option->evaluation->component->name ?? ''}}
+                                        </td>
                                         <td>
                                            {{$option->name}}
                                         </td>
@@ -137,6 +150,7 @@
                         <table class="table align-items-center table-flush text-center"  id="datatable-basic2">
                             <thead class="thead-light">
                                 <tr>    
+                                    <th>Survery Answer Id</th>
                                     @foreach ($addquesions as $option)                               
                                         <th scope="col">{{$option->name}}</th>                                     
                                     @endforeach                                                                
@@ -145,7 +159,11 @@
                             <tbody> 
                                 @foreach ($suranswers as $option)
                                    <tr>
+                                        <td>
+                                            {{$option->addanswers()->where('survey_id', $option->survey_id)->first()->suranswer_id}}
+                                        </td>
                                         @foreach ($addquesions as $item)
+                                            
                                             <td>
                                                 {{$option->addanswers()->where('suranswer_id', $option->id)->where('addquestion_id', $item->id)->first()->addanswer}}    
                                             </td>

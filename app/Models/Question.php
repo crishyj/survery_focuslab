@@ -13,4 +13,8 @@ class Question extends Model
     public function queanswers(){
         return $this->hasMany(Queanswer::class);
     }
+
+    public function evaluation(){
+        return $this->belongsTo(Evaluation::class);
+    }
 }

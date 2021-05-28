@@ -530,6 +530,7 @@ class AdminController extends Controller
 
             $question_id = Project::find($request['project_id'])->question;
             $questions = Evaluation::pluck($question_id);
+
             $questions->push($survey_id);
 
             return response()->json(['success'=>$questions]);
@@ -550,6 +551,7 @@ class AdminController extends Controller
                 'name' => $questions[$i],
                 'checked' => $checks[$i],
                 'survey_id' => $request['survey_id'],                
+                'evaluation_id' => $i+1,
             ]);
             $options->save();
         }

@@ -16,7 +16,7 @@ class AnswerContoller extends Controller
 {
     public function index($id){
         $options = Survey::where('id', '=', $id)->get();
-        $questions = Question::where('survey_id', '=', $id)->get();
+        $questions = Question::where('survey_id', '=', $id)->where('checked', 1)->get();
         $addquesions = Addquestion::where('survey_id', '=', $id)->get();
         $defanswers = Defanswers::all();
         return view('answer.index', compact('options', 'questions', 'addquesions', 'defanswers'));

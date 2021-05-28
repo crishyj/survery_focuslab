@@ -18,6 +18,7 @@ class CreateQuestionsTable extends Migration
             $table->string('name')->nullable();
             $table->string('checked')->nullable();
             $table->string('survey_id')->nullable();
+            $table->string('evaluation_id')->nullable();
             $table->string('answer_id')->nullable();            
             $table->timestamps();
         });

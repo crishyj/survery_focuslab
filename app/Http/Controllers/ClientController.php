@@ -14,6 +14,7 @@ use App\Models\Defanswers;
 use App\Models\Addanswer;
 use App\Models\Queanswer;
 use App\Models\Suranswer;
+use App\Models\Evaluation;
 
 class ClientController extends Controller
 {
@@ -47,12 +48,13 @@ class ClientController extends Controller
     public function surveyReport($id){        
         $projects = Project::all();
         $defanswers = Defanswers::all();
-        $questions = Question::where('survey_id', '=', $id)->get();
+        $questions = Question::where('survey_id', '=', $id)->where('checked', 1)->get();
         $addquesions = Addquestion::where('survey_id', '=', $id)->get();
         $suranswers = Suranswer::where('survey_id', '=', $id)->get();
         $queanswers = Queanswer::where('survey_id', '=', $id)->get();
         $addanswers = Addanswer::where('survey_id', '=', $id)->get();
+        $evaluations = Evaluation::all();
         return view('client.surveyReport', 
-                    compact('projects', 'defanswers', 'questions', 'addquesions', 'suranswers', 'queanswers', 'addanswers'));
+                    compact('projects', 'defanswers', 'questions', 'addquesions', 'suranswers', 'queanswers', 'addanswers', 'evaluations'));
     }
 }
