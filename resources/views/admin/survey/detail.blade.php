@@ -138,7 +138,9 @@
                                 <div class="detail_value">
                                     <h3>
                                         @if ($option->culturedim_check == 'on')
-                                            {{'On'}}
+                                            {{'On'}}                                      
+                                        @else
+                                            {{'Off'}}                                        
                                         @endif
                                     </h3>
                                 </div>
@@ -152,6 +154,8 @@
                                     <h3>
                                         @if ($option->criticalfact_check == 'on')
                                             {{'On'}}
+                                        @else
+                                            {{'Off'}}
                                         @endif
                                     </h3>
                                 </div>
@@ -165,6 +169,8 @@
                                     <h3>
                                         @if ($option->balancecard_check == 'on')
                                             {{'On'}}
+                                        @else
+                                            {{'Off'}}
                                         @endif
                                     </h3>
                                 </div>

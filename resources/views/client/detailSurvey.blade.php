@@ -104,44 +104,50 @@
                             </div>
                         </div>
 
-                        @if ($option->culturedim_check == 'on')
-                            <div class="row">    
-                                <div class="col-md-4"></div>                          
-                                <div class="col-md-6">
-                                    <div class="detail_value">
-                                        <h3>
-                                           {{'Culture Dim'}}                                   
-                                        </h3>
-                                    </div>
+                        div class="row">    
+                            <div class="col-md-4 text-md-right py-2">Culture Dim</div>                          
+                            <div class="col-md-6">
+                                <div class="detail_value">
+                                    <h3>
+                                        @if ($option->culturedim_check == 'on')
+                                            {{'On'}}                                      
+                                        @else
+                                            {{'Off'}}                                        
+                                        @endif
+                                    </h3>
                                 </div>
                             </div>
-                        @endif
+                        </div>
 
-                        @if ($option->criticalfact_check == 'on')
-                            <div class="row">    
-                                <div class="col-md-4"></div>                          
-                                <div class="col-md-6">
-                                    <div class="detail_value">
-                                        <h3>
-                                           {{'Critical Fact'}}                                   
-                                        </h3>
-                                    </div>
+                        <div class="row">    
+                            <div class="col-md-4 text-md-right py-2">Critical Fact</div>                          
+                            <div class="col-md-6">
+                                <div class="detail_value">
+                                    <h3>
+                                        @if ($option->criticalfact_check == 'on')
+                                            {{'On'}}
+                                        @else
+                                            {{'Off'}}
+                                        @endif
+                                    </h3>
                                 </div>
                             </div>
-                        @endif
-
-                        @if ($option->balancecard_check == 'on')
-                            <div class="row">    
-                                <div class="col-md-4"></div>                          
-                                <div class="col-md-6">
-                                    <div class="detail_value">
-                                        <h3>
-                                        {{'Balance Score Card'}}                                   
-                                        </h3>
-                                    </div>
+                        </div>
+                        
+                        <div class="row">    
+                            <div class="col-md-4 text-md-right py-2">Balance Card</div>                          
+                            <div class="col-md-6">
+                                <div class="detail_value">
+                                    <h3>
+                                        @if ($option->balancecard_check == 'on')
+                                            {{'On'}}
+                                        @else
+                                            {{'Off'}}
+                                        @endif
+                                    </h3>
                                 </div>
                             </div>
-                        @endif
+                        </div>
                         
                         @if ($option->name_check == 'on')
                             <div class="form-group row">    
