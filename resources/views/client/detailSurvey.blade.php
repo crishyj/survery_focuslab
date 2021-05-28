@@ -78,7 +78,6 @@
                                 </div>
                             </div>
                         </div>
-
                         
                         <div class="row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Code') }}</label>
@@ -87,6 +86,19 @@
                                 <div class="detail_value">
                                     <h3>
                                         {{$option->code}}                                       
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Link') }}</label>
+
+                            <div class="col-md-6">
+                                <div class="detail_value">
+                                    <h3>
+                                        {{$option->surveylink}}                                       
                                     </h3>
                                 </div>
                             </div>
@@ -132,14 +144,10 @@
                         @endif
                         
                         @if ($option->name_check == 'on')
-                            <div class="row">    
+                            <div class="form-group row">    
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>                        
                                 <div class="col-md-6">
-                                    <div class="detail_value">
-                                        <h3>
-                                            {{$option->name}}                          
-                                        </h3>
-                                    </div>
+                                    <input type="text" name="" id="" class="form-control">
                                 </div>
                             </div>
                         @endif
@@ -215,11 +223,7 @@
                             <div class="form-group row">    
                                 <label for="companylevel" class="col-md-4 col-form-label text-md-right">{{ __('Date') }}</label>                         
                                 <div class="col-md-6">
-                                    <div class="detail_value">
-                                        <h3>
-                                            {{$option->surveydate}}                                       
-                                        </h3>
-                                    </div>
+                                    <input type="date" name="" id="" class="form-control">
                                 </div>
                             </div>
                         @endif
@@ -239,12 +243,10 @@
                             </div>
                         @endforeach
 
-                       
-                        <div class="form-group row">    
-                            <label for="companylevel" class="col-md-4 col-form-label text-md-right">{{ __('Additional Question') }}</label> 
-                                                
-                            <div class="col-md-6">
-                                @foreach ($addquesions as $item)
+                        @foreach ($addquesions as $item)
+                            <div class="form-group row">    
+                                <label for="companylevel" class="col-md-4 col-form-label text-md-right">{{$item->name}}  </label> 
+                                <div class="col-md-6">
                                     @if ($item->option_check == 'on')    
                                         <select name="companyjob" id="companyjob" class="form-control">
                                             @foreach(explode(',', $item->option) as $info) 
@@ -252,15 +254,11 @@
                                             @endforeach
                                         </select>
                                     @else
-                                        <div class="detail_value">
-                                            <h3>
-                                                {{$item->name}}                                       
-                                            </h3>
-                                        </div>  
+                                        <input type="text" name="" id="" class="form-control">
                                     @endif
-                                @endforeach
+                                </div>
                             </div>
-                        </div>
+                        @endforeach
                     @endforeach
                 </div>
             </div>

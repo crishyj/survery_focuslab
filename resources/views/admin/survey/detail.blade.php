@@ -11,6 +11,18 @@
 
                 <div class="card-body">
                     @foreach ($options as $option)
+
+                        <div class="row">    
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>                        
+                            <div class="col-md-6">
+                                <div class="detail_value">
+                                    <h3>
+                                        {{$option->name}}                          
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Survey Header') }}</label>
 
@@ -108,63 +120,62 @@
                             </div>
                         </div>
 
-                        @if ($option->culturedim_check == 'on')
-                            <div class="row">    
-                                <div class="col-md-4"></div>                          
-                                <div class="col-md-6">
-                                    <div class="detail_value">
-                                        <h3>
-                                           {{'Culture Dim'}}                                   
-                                        </h3>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
+                        <div class="row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Link') }}</label>
 
-                        @if ($option->criticalfact_check == 'on')
-                            <div class="row">    
-                                <div class="col-md-4"></div>                          
-                                <div class="col-md-6">
-                                    <div class="detail_value">
-                                        <h3>
-                                           {{'Critical Fact'}}                                   
-                                        </h3>
-                                    </div>
+                            <div class="col-md-6">
+                                <div class="detail_value">
+                                    <h3>
+                                        {{$option->surveylink}}                                       
+                                    </h3>
                                 </div>
                             </div>
-                        @endif
+                        </div>
 
-                        @if ($option->balancecard_check == 'on')
-                            <div class="row">    
-                                <div class="col-md-4"></div>                          
-                                <div class="col-md-6">
-                                    <div class="detail_value">
-                                        <h3>
-                                        {{'Balance Score Card'}}                                   
-                                        </h3>
-                                    </div>
+                        <div class="row">    
+                            <div class="col-md-4 text-md-right py-2">Culture Dim</div>                          
+                            <div class="col-md-6">
+                                <div class="detail_value">
+                                    <h3>
+                                        @if ($option->culturedim_check == 'on')
+                                            {{'On'}}
+                                        @endif
+                                    </h3>
                                 </div>
                             </div>
-                        @endif
+                        </div>
+
+                        <div class="row">    
+                            <div class="col-md-4 text-md-right py-2">Critical Fact</div>                          
+                            <div class="col-md-6">
+                                <div class="detail_value">
+                                    <h3>
+                                        @if ($option->criticalfact_check == 'on')
+                                            {{'On'}}
+                                        @endif
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
                         
-                        @if ($option->name_check == 'on')
-                            <div class="row">    
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>                        
-                                <div class="col-md-6">
-                                    <div class="detail_value">
-                                        <h3>
-                                            {{$option->name}}                          
-                                        </h3>
-                                    </div>
+                        <div class="row">    
+                            <div class="col-md-4 text-md-right py-2">Balance Card</div>                          
+                            <div class="col-md-6">
+                                <div class="detail_value">
+                                    <h3>
+                                        @if ($option->balancecard_check == 'on')
+                                            {{'On'}}
+                                        @endif
+                                    </h3>
                                 </div>
                             </div>
-                        @endif
+                        </div>
 
                         @if ($option->company_check == 'on')
                             <div class="form-group row">    
                                 <label for="company" class="col-md-4 col-form-label text-md-right">{{ __('Company') }}</label>                         
                                 <div class="col-md-6">
-                                    <select name="company" id="company" class="form-control">
+                                    <select name="company" id="company1" class="form-control">
                                         @foreach(explode(',', $option->company) as $info) 
                                             <option>{{$info}}</option>
                                         @endforeach
@@ -178,7 +189,7 @@
                             <div class="form-group row">    
                                 <label for="city" class="col-md-4 col-form-label text-md-right">{{ __('City') }}</label>                         
                                 <div class="col-md-6">
-                                    <select name="city" id="city" class="form-control">
+                                    <select name="city" id="city1" class="form-control">
                                         @foreach(explode(',', $option->city) as $info) 
                                             <option>{{$info}}</option>
                                         @endforeach
@@ -191,7 +202,7 @@
                             <div class="form-group row">    
                                 <label for="companyarea" class="col-md-4 col-form-label text-md-right">{{ __('Company Area') }}</label>                         
                                 <div class="col-md-6">
-                                    <select name="companyarea" id="companyarea" class="form-control">
+                                    <select name="companyarea" id="companyarea1" class="form-control">
                                         @foreach(explode(',', $option->companyarea) as $info) 
                                             <option>{{$info}}</option>
                                         @endforeach
@@ -203,22 +214,21 @@
                         @if ($option->companylevel_check == 'on')
                             <div class="form-group row">    
                                 <label for="companylevel" class="col-md-4 col-form-label text-md-right">{{ __('Company Level') }}</label>                         
-                                <div class="col-md-6">
-                                    <select name="companylevel" id="companylevel" class="form-control">
+                                <div class="col-md-6">                                   
+                                    <select name="companylevel" id="companylevel1" class="form-control">
                                         @foreach(explode(',', $option->companylevel) as $info) 
                                             <option>{{$info}}</option>
                                         @endforeach
-                                    </select>
+                                    </select>                                  
                                 </div>
-                            </div>
+                            </div>  
                         @endif
-
-                        
+                                               
                         @if ($option->companyjob_check == 'on')
                             <div class="form-group row">    
                                 <label for="companylevel" class="col-md-4 col-form-label text-md-right">{{ __('Company Job') }}</label>                         
                                 <div class="col-md-6">
-                                    <select name="companyjob" id="companyjob" class="form-control">
+                                    <select name="companyjob" id="companyjob1" class="form-control">
                                         @foreach(explode(',', $option->companyjob) as $info) 
                                             <option>{{$info}}</option>
                                         @endforeach
@@ -231,11 +241,7 @@
                             <div class="form-group row">    
                                 <label for="companylevel" class="col-md-4 col-form-label text-md-right">{{ __('Date') }}</label>                         
                                 <div class="col-md-6">
-                                    <div class="detail_value">
-                                        <h3>
-                                            {{$option->surveydate}}                                       
-                                        </h3>
-                                    </div>
+                                   <input type="date" name="survey_date" id="survey_date1" class="form-control survey_date">
                                 </div>
                             </div>
                         @endif
@@ -243,39 +249,42 @@
                         @php $i = 1; @endphp
 
                         @foreach ($questions as $item)
-                            <div class="form-group row">    
-                                <label for="companylevel" class="col-md-4 col-form-label text-md-right">{{ __('Question') }} {{ $i++ }}</label>                         
-                                <div class="col-md-6">
-                                    <div class="detail_value">
-                                        <h3>
-                                            {{$item->name}}                                       
-                                        </h3>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-
-                       
-                        <div class="form-group row">    
-                            <label for="companylevel" class="col-md-4 col-form-label text-md-right">{{ __('Additional Question') }}</label> 
-                                                
-                            <div class="col-md-6">
-                                @foreach ($addquesions as $item)
-                                    @if ($item->option_check == 'on')    
-                                        <select name="companyjob" id="companyjob" class="form-control">
-                                            @foreach(explode(',', $item->option) as $info) 
-                                                <option>{{$info}}</option>
-                                            @endforeach
-                                        </select>
-                                    @else
+                            @if ($item->checked == 1)
+                                <div class="form-group row">    
+                                    <label for="companylevel" class="col-md-4 col-form-label text-md-right">{{ __('Question') }} {{ $i++ }}</label>                         
+                                    <div class="col-md-6">
                                         <div class="detail_value">
                                             <h3>
                                                 {{$item->name}}                                       
                                             </h3>
-                                        </div>  
-                                    @endif
-                                @endforeach
-                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                                
+                            @endif
+                           
+                        @endforeach
+
+                       
+                        <div class="">    
+                            @foreach ($addquesions as $item)
+                                <div class="row form-group">
+                                    <label for="companylevel" class="col-md-4 col-form-label text-md-right">{{$item->name}}</label> 
+                                                        
+                                    <div class="col-md-6">                                
+                                        @if ($item->option_check == 'on')    
+                                            <select name="companyjob" id="companyjob11" class="form-control">
+                                                @foreach(explode(',', $item->option) as $info) 
+                                                    <option>{{$info}}</option>
+                                                @endforeach
+                                            </select>
+                                        @else
+                                            <input type="text" name="" id="" class="form-control">
+                                        @endif                               
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     @endforeach
                 </div>

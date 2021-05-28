@@ -9,4 +9,8 @@ class Addquestion extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function addanswers(){
+        return $this->hasMany(Addanswer::class);
+    }
 }

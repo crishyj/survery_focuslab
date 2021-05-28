@@ -20,6 +20,10 @@ Route::get('/', function () {
 
 Route::get('/answer/{id}', [App\Http\Controllers\AnswerContoller::class, 'index'])->name('answerSurvey');
 Route::post('/answer/{id}', [App\Http\Controllers\AnswerContoller::class, 'checkCode'])->name('checkCode');
+Route::post('/suranswer', [App\Http\Controllers\AnswerContoller::class, 'suranswer'])->name('suranswer');
+Route::post('/queanswer', [App\Http\Controllers\AnswerContoller::class, 'queanswer'])->name('queanswer');
+Route::post('/addanswer', [App\Http\Controllers\AnswerContoller::class, 'addanswer'])->name('addanswer');
+
 
 Auth::routes();
 
@@ -27,6 +31,7 @@ Auth::routes();
 // Route::get('/guest', [App\Http\Controllers\ClientController::class, 'index'])->name('guest');
 Route::get('/guest', [App\Http\Controllers\ClientController::class, 'viewSurvey'])->name('guest');
 Route::get('/detailSurvey/{id}', [App\Http\Controllers\ClientController::class, 'detailSurvey'])->name('detailSurvey');
+Route::get('/surveyReport/{id}', [App\Http\Controllers\ClientController::class, 'surveyReport'])->name('surveyReport');
 
 
 Route::group(['middleware' => ['Role']], function () {

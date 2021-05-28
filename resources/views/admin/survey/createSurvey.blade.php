@@ -18,6 +18,20 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="client_id" class="col-md-4 col-form-label text-md-right">
                                 {{ __('Client') }}
                             </label>
@@ -230,12 +244,11 @@
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-md-6 text-md-right">
+                            <div class="col-md-12 nav_button">
                                 <button type="reset"  class="btn btn-primary">
                                     {{ __('Reset') }}
                                 </button>
-                            </div>
-                            <div class="col-md-6">
+                            
                                 <button class="btn btn-success">
                                     {{ __('Save') }}
                                 </button>
@@ -298,7 +311,7 @@
                             </label>
 
                             <div class="col-md-6">
-                                <textarea name="name" id="additional_question" rows="5" class="form-control @error('name') is-invalid @enderror" autocomplete="name" autofocus>{{ old('name') }}</textarea>
+                                <textarea name="additional_question" id="additional_question" rows="5" class="form-control @error('name') is-invalid @enderror" autocomplete="name" autofocus>{{ old('name') }}</textarea>
                                 @error('additional_question')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -310,12 +323,12 @@
                         <div class="row">
                             <label class="col-md-4 col-form-label text-md-right" for="option_check">Close Question</label>
                             <div class="col-md-6">
-                                <input type="checkbox" class="form-control" id="option_check" name="option_check" autocomplete="option_check" autofocus>                                
+                                <input type="checkbox" class="form-control" id="option_check" name="option_check" autofocus>                                
                             </div>
                         </div>
 
                         
-                        <div class="form-group row">
+                        <div class="form-group row option_area">
                             <label for="option" class="col-md-4 col-form-label text-md-right">
                                 {{ __('Options for Close Questions') }}
                             </label>
@@ -330,15 +343,20 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-5">
-                              <button id="additional_submit" name="additional_submit" class="btn btn-success">Complete</button>
+                        <div class="form-group row">                            
+                            <div class="col-md-6 text-right">
+                                <button id="additional_submit" name="additional_submit" class="btn btn-success">Save & Continue</button>
                             </div>
+
+                            <div class="col-md-6 complete_btn_area">
+                                <a href="{{ route('viewSurvey') }}">
+                                    <div id="complete_btn" name="complete_btn" class="btn btn-primary">Complete</div>
+                                </a>
+                              </div>
                         </div>  
 
                     </form>
                 </div>
-
                 
             </div>
         </div>
@@ -346,9 +364,22 @@
 </div>
 @endsection
 
-@push('js')
-<script>
+@push('css')
+    <style>
+        #company,
+        #city,
+        #companyarea,
+        #companylevel,
+        #companyjob
+        {
+            display: none;
+        }
+    </style>
+@endpush
 
+@push('js')
+
+<script>
     $(document).ready(function(){
         let questions = [];
         var next = 0;
@@ -356,36 +387,139 @@
         let question_array = [];
         let check_array = [];
         var temp1, temp2;
+        let culturedim_check = '';
+        let criticalfact_check = '';
+        let balancecard_check = '';
+        let name_check = '';
+        let company_check = '';
+        let city_check = '';
+        let companyarea_check = '';
+        let companylevel_check = '';
+        let companyjob_check = '';
+        let surveydate_check = '';
+       
+
+        $('#culturedim_check').mousedown(function() {
+            if (!$(this).is(':checked')) {
+                $(this).trigger("change");
+                culturedim_check = 'on';                
+            }else{
+                $(this).trigger("change");
+            }
+        });
+
+        $('#criticalfact_check').mousedown(function() {
+            if (!$(this).is(':checked')) {
+                $(this).trigger("change");
+                criticalfact_check = 'on';                
+            }else{
+                $(this).trigger("change");
+            }
+        });
+
+        $('#balancecard_check').mousedown(function() {
+            if (!$(this).is(':checked')) {
+                $(this).trigger("change");
+                balancecard_check = 'on';                
+            }else{
+                $(this).trigger("change");
+            }
+        });
+      
+        $('#name_check').mousedown(function() {
+            if (!$(this).is(':checked')) {
+                $(this).trigger("change");
+                name_check = 'on';                
+            }else{
+                $(this).trigger("change");
+            }
+        });               
+
+        $('#company_check').mousedown(function() {
+            if (!$(this).is(':checked')) {
+                $(this).trigger("change");
+                $('#company').css('display', 'block');
+                company_check = 'on';
+            }else{
+                $(this).trigger("change");
+                $('#company').css('display', 'none');
+                company_check = '';
+            }
+        });
+
+        $('#city_check').mousedown(function() {
+            if (!$(this).is(':checked')) {
+                $(this).trigger("change");
+                $('#city').css('display', 'block');
+                city_check = 'on';
+            }else{
+                $(this).trigger("change");
+                $('#city').css('display', 'none');
+            }
+        });
+
+        $('#companyarea_check').mousedown(function() {
+            if (!$(this).is(':checked')) {
+                $(this).trigger("change");
+                $('#companyarea').css('display', 'block');
+                companyarea_check = 'on';
+            }else{
+                $(this).trigger("change");
+                $('#companyarea').css('display', 'none');
+            }
+        });
+
+        $('#companylevel_check').mousedown(function() {
+            if (!$(this).is(':checked')) {
+                $(this).trigger("change");
+                $('#companylevel').css('display', 'block');
+                companylevel_check = 'on'
+            }else{
+                $(this).trigger("change");
+                $('#companylevel').css('display', 'none');
+            }
+        });
+
+        $('#companyjob_check').mousedown(function() {
+            if (!$(this).is(':checked')) {
+                $(this).trigger("change");
+                $('#companyjob').css('display', 'block');
+                companyjob_check = 'on';
+            }else{
+                $(this).trigger("change");
+                $('#companyjob').css('display', 'none');
+            }
+        });
+
+        $('#surveydate_check').mousedown(function() {
+            if (!$(this).is(':checked')) {
+                $(this).trigger("change");
+                surveydate_check = 'on';
+            }else{
+                $(this).trigger("change");
+            }
+        });
+
         $('.surveyform').submit(function(event)  {
             event.preventDefault();
 
             let _token = $('input[name=_token]').val();
+            let name = $('#name').val();
             let client_id = $('#client_id').val();
             let project_id = $('#project_id').val();
             let description = $('#description').val();
             let start = $('#start').val();
-            let end = $('#end').val();
-            let culturedim_check = $('#culturedim_check').val();
-            let criticalfact_check = $('#criticalfact_check').val();
-            let balancecard_check = $('#balancecard_check').val();
-            let name = $('#name').val();
-            let name_check = $('#name_check').val();
+            let end = $('#end').val();                     
             let company = $('#company').val();
-            let company_check = $('#company_check').val();
             let city = $('#city').val();
-            let city_check = $('#city_check').val();
             let companyarea = $('#companyarea').val();
-            let companyarea_check = $('#companyarea_check').val();
             let companylevel = $('#companylevel').val();
-            let companylevel_check = $('#companylevel_check').val();
             let companyjob = $('#companyjob').val();
-            let companyjob_check = $('#companyjob_check').val();
-            let surveydate = $('#surveydate').val();
-            let surveydate_check = $('#surveydate_check').val();
             let code = $('#code').val();
 
             var form_data =new FormData();
             form_data.append("_token", _token);
+            form_data.append("name", name);
             form_data.append("client_id", client_id);
             form_data.append("project_id", project_id);   
             form_data.append("description", description);   
@@ -393,8 +527,7 @@
             form_data.append("end", end);
             form_data.append("culturedim_check", culturedim_check);
             form_data.append("criticalfact_check", criticalfact_check); 
-            form_data.append("balancecard_check", balancecard_check);
-            form_data.append("name", name);
+            form_data.append("balancecard_check", balancecard_check);            
             form_data.append("name_check", name_check);   
             form_data.append("company", company);   
             form_data.append("company_check", company_check);
@@ -406,7 +539,6 @@
             form_data.append("companylevel_check", companylevel_check);
             form_data.append("companyjob", companyjob);
             form_data.append("companyjob_check", companyjob_check);
-            form_data.append("surveydate", surveydate);
             form_data.append("surveydate_check", surveydate_check);
             form_data.append('code', code);
 
@@ -453,8 +585,6 @@
                             $('.invalid-feedback').css('display', 'block');
                         });
                     }
-                        
-                    // console.log(response);
                 }
             });
         });
@@ -465,7 +595,6 @@
 
             for(var k = 1; k <= next; k++){
                 temp1 = $('#question'+k).val();
-                // temp2 = $('#question_check'+k).val();
                 if ($('#question_check'+k).prop('checked')==true){ 
                     temp2 = '1'
                 }else{
@@ -476,6 +605,7 @@
                 temp1 = '';
                 temp2 = '';
             }
+
             let _token = $('input[name=_token]').val();
             let survey_id = $('#survey_id').val();
 
@@ -498,7 +628,6 @@
                     $('.question_form').css('display', 'none');
                     $('.additional_form').css('display', 'block');
                     if (response.success == 'success'){
-                        // $('#survey_id1').val(response.data);
                         console.log(response.data);                       
                     }
                 },
@@ -516,14 +645,30 @@
 
         });
 
+        
+        let option_check ='';
+        
+        $('#option_check').mousedown(function() {
+            if (!$(this).is(':checked')) {
+                $(this).trigger("change");
+                option_check = 'on';
+                $('.option_area').css('display', 'flex');
+            }else{
+                $(this).trigger("change");
+                option_check = '';
+                $('.option_area').css('display', 'none');
+            }
+        });
+
         $('#additional_submit').click(function(e){
             e.preventDefault();
-
+           
             let _token = $('input[name=_token]').val();
             let survey_id = $('#survey_id').val();
-            let name = $('#additional_question').val();
-            let option_check = $('#option_check').val();
+            let name = $('#additional_question').val();            
             let option = $('#option').val();
+            
+            
 
             var form_data =new FormData();
             form_data.append("_token", _token);
@@ -543,7 +688,9 @@
                 success:function(response) {
                     console.log(response);
                     if (response == 'success'){                        
-                        window.location.href = '/viewSurvey';
+                        $(".additional_form").trigger("reset");
+                        $('#option_check').prop('checked', false);                       
+                        $('.complete_btn_area').css('display', 'block');
                     }
                 },
                 error:function (response) {
@@ -554,13 +701,10 @@
                             $('.invalid-feedback').css('display', 'block');
                         });
                     }
-                        
-                    // console.log(response);
                 }
             });
-
         });
-    })
+    });
 
 </script>
     

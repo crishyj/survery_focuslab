@@ -24,15 +24,58 @@
     display: none;
 }
 
+.invalid-name,
+.invalid-date,
+.invalid-addanswer{
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+}
+
 .question_form,
-.additional_form{
+.additional_form,
+.complete_btn_area,
+.step2,
+.step3,
+.step4,
+.step5,
+.invalid-name,
+.invalid-date,
+.invalid-addanswer
+{
     display: none;
 }
 
+.option_area{
+    display: none;
+}
 .badge{
     font-size: 16px;
 }
 
 .detail_value{
     padding: 10px 0;
+}
+
+.confirm_form{
+    max-width: 500px;
+    margin: auto;
+}
+
+.step3 label{
+    font-size: 20px;
+}
+
+.custom-control-label{
+    font-size: 15px !important;
+}
+
+.nav_button{
+    display: flex;
+    justify-content: space-around;
+}
+
+.input-group-prepend{
+    border: solid 1px #dee2e6;
 }

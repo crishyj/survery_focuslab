@@ -16,7 +16,8 @@
                                     <th scope="col">{{ __(' Name') }}</th>                                     
                                     <th scope="col">{{ __(' Project') }}</th> 
                                     <th scope="col">{{ __(' Description') }}</th> 
-                                    <th scope="col">{{ __(' Code') }}</th>                   
+                                    <th scope="col">{{ __(' Code') }}</th>
+                                    <th scope="col">{{ __(' Link') }}</th>
                                     <th scope="col"></th>                                  
                                 </tr>
                             </thead>
@@ -35,7 +36,8 @@
                                         @endforeach
                                         
                                         <td>{{ $option->description }}</td>                                       
-                                        <td>{{ $option->code }}</td>          
+                                        <td>{{ $option->code }}</td>  
+                                        <td>{{ $option->surveylink }}</td>        
 
                                         
                                         <td class="text-right">
@@ -44,7 +46,8 @@
                                                     <i class="fas fa-ellipsis-v"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">                                                        
-                                                    <a href="{{route('detailSurvey', $option->id)}}" class="dropdown-item" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Detail"><i class="ni ni-bullet-list-67"></i> Detail</a>                                                    
+                                                    <a href="{{route('detailSurvey', $option->id)}}" class="dropdown-item" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Detail"><i class="ni ni-bullet-list-67"></i> Detail</a>
+                                                    <a href="{{route('surveyReport', $option->id)}}" class="dropdown-item" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Detail"><i class="ni ni-bullet-list-67"></i> Report</a>
                                                 </div>
                                             </div>
                                         </td>

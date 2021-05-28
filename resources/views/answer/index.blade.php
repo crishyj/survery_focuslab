@@ -3,89 +3,280 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    {{ __('Login') }}
-                </div>
-               
+                    {{ __('Survey') }}
+                </div>               
 
                 <div class="card-body">
                     <div class="card-body">
                         @foreach ($options as $option)
                             <div class="step1">
-                                <form action="" class="confirm_form">
-                                    @csrf
-                                    <div class="form-group px-5">
-                                        <label for="code">Please input the validation code.</label>
-                                        <input id="code" type="text" class="form-control @error('code') is-invalid @enderror" name="code" value="{{ old('code') }}" autocomplete="code" autofocus>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <form action="" class="confirm_form">
+                                            @csrf
+                                            <div class="text-center mb-5">
+                                                <h3>
+                                                    POR FAVOR INGRESE EL CÓDIGO
+                                                </h3>
+                                            </div>
+                                            <div class="form-group">
+                                                <input id="code" type="text" class="form-control @error('code') is-invalid @enderror" name="code" value="{{ old('code') }}" autocomplete="code" autofocus>
+        
+                                                @error('code')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            
+                                            <div class="form-group text-center">
+                                                <button class="btn btn-primary confirm_btn" id="confirm_btn">Confirm</button>
+                                            </div>
+                                        </form>
+                                    </div>
 
-                                        @error('code')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    
-                                    <div class="form-group text-center">
-                                        <button class="btn btn-primary confirm_btn" id="confirm_btn">Confirm</button>
-                                    </div>
-                                </form>
+                                </div>
+                               
                             </div>
-                           
+                            <form action="" method="post">
+                                @csrf
+                                <div class="step2">
+                                        <div class="text-center mb-5">
+                                            <h3>
+                                                Antes de responder el cuestionario de evaluacion de cultura, por favor responda las siguientes preguntas
+                                            </h3>
+                                        </div>
 
-                            <div class="step2">
-
-                                @php $i = 1; @endphp
-    
-                                @foreach ($questions as $item)
-                                    <div class="form-group row">    
-                                        <label for="companylevel" class="col-md-4 col-form-label text-md-right">{{ __('Question') }} {{ $i++ }}</label>                         
-                                        <div class="col-md-6">
-                                            <div class="detail_value">
-                                                <h5>
-                                                    {{$item->name}}                                       
-                                                </h5>
+                                    <div class="row mb-4">
+                                        <div class="col-12">
+                                            <div class="progress-wrapper ">                                               
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-info" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">25%</div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                @endforeach
-        
-                               
-                                <div class="form-group row">    
-                                    <label for="companylevel" class="col-md-4 col-form-label text-md-right">{{ __('Additional Question') }}</label> 
-                                                        
-                                    <div class="col-md-6">
-                                        @foreach ($addquesions as $item)
-                                            @if ($item->option_check == 'on')    
-                                                <select name="companyjob" id="companyjob" class="form-control">
-                                                    @foreach(explode(',', $item->option) as $info) 
-                                                        <option>{{$info}}</option>
-                                                    @endforeach
-                                                </select>
-                                            @else
-                                                <div class="detail_value">
-                                                    <h5>
-                                                        {{$item->name}}                                       
-                                                    </h5>
-                                                </div>  
-                                            @endif
-                                        @endforeach
+                                   
+                                    
+                                        @if ($option->name_check == 'on')
+                                            <div class="form-group row">    
+                                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>                         
+                                                <div class="col-md-6">
+                                                    <input type="text" name="name" id="name" class="form-control name">
+                                                    <span class="invalid-name" role="alert">
+                                                        <strong>You must input name</strong>
+                                                    </span>
+                                                </div>
+                                                
+                                            </div>                                   
+                                        @endif
+                                        
+                                        @if ($option->company_check == 'on')
+                                            <div class="form-group row">    
+                                                <label for="company" class="col-md-4 col-form-label text-md-right">{{ __('Company') }}</label>                         
+                                                <div class="col-md-6">
+                                                    <select name="company" id="company" class="form-control">
+                                                        @foreach(explode(',', $option->company) as $info) 
+                                                            <option value="{{$info}}">{{$info}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>                                   
+                                        @endif
+
+                                        @if ($option->city_check == 'on')
+                                            <div class="form-group row">    
+                                                <label for="city" class="col-md-4 col-form-label text-md-right">{{ __('City') }}</label>                         
+                                                <div class="col-md-6">
+                                                    <select name="city" id="city" class="form-control">
+                                                        @foreach(explode(',', $option->city) as $info) 
+                                                            <option value="{{$info}}">{{$info}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>                                   
+                                        @endif
+                                        
+                                        @if ($option->companyarea_check == 'on')
+                                            <div class="form-group row">    
+                                                <label for="companyarea" class="col-md-4 col-form-label text-md-right">{{ __('Company Area') }}</label>                         
+                                                <div class="col-md-6">
+                                                    <select name="companyarea" id="companyarea" class="form-control">
+                                                        @foreach(explode(',', $option->companyarea) as $info) 
+                                                            <option value="{{$info}}">{{$info}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>                                   
+                                        @endif
+
+                                        @if ($option->companylevel_check == 'on')
+                                            <div class="form-group row">    
+                                                <label for="companylevel" class="col-md-4 col-form-label text-md-right">{{ __('Company Level') }}</label>                         
+                                                <div class="col-md-6">
+                                                    <select name="companylevel" id="companylevel" class="form-control">
+                                                        @foreach(explode(',', $option->companylevel) as $info) 
+                                                            <option value="{{$info}}">{{$info}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>                                   
+                                        @endif
+                                        
+                                        @if ($option->companyjob_check == 'on')
+                                            <div class="form-group row">    
+                                                <label for="companyjob" class="col-md-4 col-form-label text-md-right">{{ __('Company Job') }}</label>                         
+                                                <div class="col-md-6">
+                                                    <select name="companyjob" id="companyjob" class="form-control">
+                                                        @foreach(explode(',', $option->companyjob) as $info) 
+                                                            <option value="{{$info}}">{{$info}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>                                   
+                                        @endif
+                                        
+                                        @if ($option->surveydate_check == 'on')
+                                            <div class="form-group row">    
+                                                <label for="companyjob" class="col-md-4 col-form-label text-md-right">{{ __('Survey Date') }}</label>                         
+                                                <div class="col-md-6">
+                                                    <input type="date" name="survey_date" id="survey_date" class="form-control survey_date">
+                                                    <span class="invalid-date" role="alert">
+                                                        <strong>You must input date</strong>
+                                                    </span>
+                                                </div>
+                                            </div>                                   
+                                        @endif
+
+                                    <div class="form-group row">
+                                        <div class="col-md-12 text-center">                                                                                   
+                                            <div class="next_step3 btn btn-success">
+                                                Next
+                                            </div>
+                                        </div>                                       
                                     </div>
+
                                 </div>
 
-                            </div>
-
-                            
-                            <div class="row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Code') }}</label>
-    
-                                <div class="col-md-6">
-                                    <div class="detail_value">
-                                        <h5>
-                                            {{$option->code}}                                       
-                                        </h5>
+                                <div class="step3">
+                                    <div class="text-center mb-5">
+                                        <h3>
+                                            
+                                        </h3>
                                     </div>
+
+                                    <div class="row mb-4">
+                                        <div class="col-12">
+                                            <div class="progress-wrapper ">                                               
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">50%</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @php $i = 1; @endphp
+        
+                                    @foreach ($questions as $item)
+                                        <div class="form-group row">    
+                                            <label for="queanswer" class="col-md-4 col-form-label text-md-right">{{$item->name}}</label>                         
+                                            <div class="col-md-6">
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="radio" id="{{$i}}-1" name="question{{$i}}" class="custom-control-input" data-id="{{$item->id}}" value="1" checked>
+                                                    <label class="custom-control-label" for="{{$i}}-1">Casi nunca</label>
+                                                </div>
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="radio" id="{{$i}}-2" name="question{{$i}}" class="custom-control-input" value="2" data-id="{{$item->id}}">
+                                                    <label class="custom-control-label" for="{{$i}}-2">Algunas veces</label>
+                                                </div>
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="radio" id="{{$i}}-3" name="question{{$i}}" class="custom-control-input" value="3" data-id="{{$item->id}}">
+                                                    <label class="custom-control-label" for="{{$i}}-3">Casi siempre</label>
+                                                </div>
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="radio" id="{{$i}}-4" name="question{{$i}}" class="custom-control-input" value="4" data-id="{{$item->id}}">
+                                                    <label class="custom-control-label" for="{{$i}}-4">Siempre</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @php $i++; @endphp
+                                    @endforeach
+                                    <input type="hidden" name="questions" id="questions" value="{{$i}}">
+                                    <input type="hidden" name="suranswer_id" class="suranswer_id" id="suranswer_id">
+
+                                    <div class="form-group row">
+                                        <div class="col-md-12 nav_button">
+                                                                                    
+                                            <div class="next_step4 btn btn-success">
+                                                Next
+                                            </div>
+                                        </div>                                       
+                                    </div>
+
+                                </div>
+                                
+                                <div class="step4">  
+                                    <div class="text-center mb-5">
+                                        <h3>
+                                            Hay algunas pregntas adicionales que deseamos hacerle antes de finalizer esta encuesta. Por favor tómese un par de minutos mas para responderlas.
+                                        </h3>
+                                    </div>
+
+                                    <div class="row mb-4">
+                                        <div class="col-12">
+                                            <div class="progress-wrapper ">                                               
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-info" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">75%</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @php $j = 1; @endphp  
+                                    @foreach ($addquesions as $item)
+                                        <div class="row form-group add{{$j}}">
+                                            <label for="companylevel" class="col-md-4 col-form-label text-md-right">{{$item->name}}</label> 
+                                                                
+                                            <div class="col-md-6">                                
+                                                @if ($item->option_check == 'on')    
+                                                    <select name="addanswer{{$j}}" id="addanswer{{$j}}" class="form-control" data-id="{{$item->id}}">
+                                                        @foreach(explode(',', $item->option) as $info) 
+                                                            <option>{{$info}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                @else
+                                                    <input type="text" name="addanswer{{$j}}" id="addanswer{{$j}}" class="form-control" data-id="{{$item->id}}">
+                                                    <span class="invalid-addanswer" role="alert">
+                                                        <strong>You must input answer</strong>
+                                                    </span>
+                                                @endif                               
+                                            </div>
+                                        </div>
+                                        @php $j++; @endphp  
+                                    @endforeach
+                                    <input type="hidden" name="addquestions" id="addquestions" value="{{$j}}">
+
+                                    <div class="form-group row">
+                                        <div class="col-md-12 nav_button">
+                                                                                    
+                                            <div class="next_step5 btn btn-success">
+                                                Next 
+                                            </div>
+                                        </div>                                       
+                                    </div>
+
+                                </div>
+
+                            </form>
+
+                            <div class="step5">
+                                <div class="text-center mb-5">
+                                    <h3>
+                                        GRACIAS POR RESPONDER ESTAS PREGUNTAS.
+                                    </h3>
                                 </div>
                             </div>
                            
@@ -101,18 +292,27 @@
 @push('js')
     <script>
         $(document).ready(function(){
+            var url = window.location.href; 
+            var res = url.split("/", 5);
+            var survey_id = res[4];
+            let answer_array = [];
+            let question_array = [];
+            let addquestion_array = [];
+            let addqueanswer_array = [];
+            var temp1, temp2, temp3, temp4;
+            var next = 0;
+            var next1 = 0;
+
             $('#confirm_btn').click(function(e){
                 e.preventDefault();
-
                 let _token = $('input[name=_token]').val();
                 let code = $('#code').val();
-
                 var form_data =new FormData();
                 form_data.append("_token", _token);
                 form_data.append("code", code);
-                
+                form_data.append("survey_id", survey_id);
                 $.ajax({
-                    url: "{{ route('checkCode', "+code+") }}",
+                    url: "{{ route('checkCode', 'code') }}",
                     type: 'POST',
                     dataType: 'json',
                     data: form_data,
@@ -121,8 +321,12 @@
                     processData: false,
                     success:function(response) {
                         console.log(response);
-                        if (response == 'success'){                        
-                            
+                        if (response == 'success'){        
+                            $('.step1').css('display', 'none');                
+                            $('.step2').css('display', 'block');
+                        }else if(response == 'failed'){
+                            alert('The code is invalid');
+                            $('.confirm_form').trigger('reset');
                         }
                     },
                     error:function (response) {
@@ -133,12 +337,175 @@
                                 $('.invalid-feedback').css('display', 'block');
                             });
                         }
-                            
-                        // console.log(response);
                     }
                 });
-
             });
+
+            $('.next_step3').click(function(){
+                let _token = $('input[name=_token]').val();
+                let survey_date = ''
+                let name = '';
+                if ($( "#name" ).length || $( "#survey_date" ).length) {                   
+                    if($('#name').val() == ''){
+                        $('.invalid-name').css('display', 'block');
+                        return;
+                    }else{
+                        name = $('#name').val();
+                    }
+
+                    if($('#survey_date').val() == ''){
+                        $('.invalid-date').css('display', 'block');
+                        return;
+                    }else{
+                        survey_date = $('#survey_date').val();         
+                    }        
+                }
+                
+                let company = $('#company').val();
+                let city = $('#city').val();
+                let company_area = $('#companyarea').val();
+                let company_level = $('#companylevel').val();
+                let comany_job = $('#companyjob').val();                                 
+
+                var form_data =new FormData();
+                form_data.append("_token", _token);               
+                form_data.append("survey_id", survey_id);
+                form_data.append("name", name);
+                form_data.append("company", company);
+                form_data.append("city", city);
+                form_data.append("company_area", company_area);
+                form_data.append("company_level", company_level);
+                form_data.append("comany_job", comany_job);
+                form_data.append("survey_date", survey_date);
+                
+                $.ajax({
+                    url: "{{ route('suranswer') }}",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: form_data,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success:function(response) {
+                        console.log(response);
+                       if(response == 'failed'){
+                            alert('The code is invalid');
+                            $('.confirm_form').trigger('reset');
+                        }else{
+                            suranswer_id = response.success;
+                            console.log(suranswer_id);
+                            $('.suranswer_id').val(suranswer_id);
+                            $('.step2').css('display', 'none');
+                            $('.step3').css('display', 'block');
+                        }
+                    },
+                    error:function (response) {
+                        if (response.status == 422) { 
+                            $.each(response.responseJSON.errors, function (i, error) {
+                                var el = $(document).find('[name="'+i+'"]');                                
+                                el.after($('<span style="color: red;" class="error-add">'+error[0]+'</span>'));
+                                $('.invalid-feedback').css('display', 'block');
+                            });
+                        }                            
+                    }
+                });
+            });
+
+            $('.next_step4').click(function(){
+                let next = $('#questions').val();
+                for(var k = 1; k < next; k++){
+                    temp1 = $('input[name="question'+k+'"]:checked').val();   
+                    temp2 = $('#'+k+'-1').data("id");
+                    answer_array.push(temp1);
+                    question_array.push(temp2);                   
+                    temp1 = '';
+                    temp2 = '';
+                }               
+                
+                let _token = $('input[name=_token]').val();                
+
+                var form_data =new FormData();
+                form_data.append("_token", _token);
+                form_data.append("survey_id", survey_id);
+                form_data.append("answers", answer_array);
+                form_data.append("questions", question_array);
+
+                $.ajax({
+                    url: "{{ route('queanswer') }}",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: form_data,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success:function(response) {
+                        console.log(response);
+                        $('.step3').css('display', 'none');
+                        $('.step4').css('display', 'block');                        
+                    },
+                    error:function (response) {
+                        if (response.status == 422) { 
+                            $('.error-add').css('display', 'none');
+                            $.each(response.responseJSON.errors, function (i, error) {
+                                var el = $(document).find('[name="'+i+'"]');                                
+                                el.after($('<span style="color: red;" class="error-add">'+error[0]+'</span>'));
+                                $('.invalid-feedback').css('display', 'block');
+                            });
+                        }
+                    }
+                });                
+            });
+           
+            $('.next_step5').click(function(){
+                let next1 = $('#addquestions').val();
+                for(var k = 1; k < next1; k++){
+                    temp3 = $('#addanswer'+k+'').val();
+                    if(temp3 == ''){
+                        $('.add'+k+' .invalid-addanswer').css('display', 'block');
+                        return;
+                    }
+                    temp4 = $('#addanswer'+k+'').data("id");
+                    addqueanswer_array.push(temp3);
+                    addquestion_array.push(temp4);                   
+                    temp3 = '';
+                    temp4 = '';
+                }               
+                
+                let _token = $('input[name=_token]').val();  
+                let suranswer_id = $('#suranswer_id').val();
+
+                var form_data =new FormData();
+                form_data.append("_token", _token);
+                form_data.append("survey_id", survey_id);
+                form_data.append("answers", addqueanswer_array);
+                form_data.append("questions", addquestion_array);
+                form_data.append("suranswer_id", suranswer_id);
+
+                $.ajax({
+                    url: "{{ route('addanswer') }}",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: form_data,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success:function(response) {
+                        console.log(response);
+                        $('.step4').css('display', 'none');
+                        $('.step5').css('display', 'block');                        
+                    },
+                    error:function (response) {
+                        if (response.status == 422) { 
+                            $('.error-add').css('display', 'none');
+                            $.each(response.responseJSON.errors, function (i, error) {
+                                var el = $(document).find('[name="'+i+'"]');                                
+                                el.after($('<span style="color: red;" class="error-add">'+error[0]+'</span>'));
+                                $('.invalid-feedback').css('display', 'block');
+                            });
+                        }
+                    }
+                });
+            })
         });
     </script>
     

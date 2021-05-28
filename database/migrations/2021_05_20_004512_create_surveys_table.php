@@ -15,6 +15,7 @@ class CreateSurveysTable extends Migration
     {
         Schema::create('surveys', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->nullable();
             $table->integer('client_id')->nullable();
             $table->integer('project_id')->nullable();
             $table->text('description')->nullable();
@@ -22,8 +23,7 @@ class CreateSurveysTable extends Migration
             $table->date('end')->nullable();
             $table->string('culturedim_check')->nullable();
             $table->string('criticalfact_check')->nullable();
-            $table->string('balancecard_check')->nullable();
-            $table->string('name')->nullable();
+            $table->string('balancecard_check')->nullable();            
             $table->string('name_check')->nullable();
             $table->string('company')->nullable();
             $table->string('company_check')->nullable();            
@@ -34,10 +34,10 @@ class CreateSurveysTable extends Migration
             $table->string('companylevel')->nullable();
             $table->string('companylevel_check')->nullable();
             $table->string('companyjob')->nullable();
-            $table->string('companyjob_check')->nullable();
-            $table->date('surveydate')->nullable();
+            $table->string('companyjob_check')->nullable();          
             $table->string('surveydate_check')->nullable(); 
             $table->string('code')->nullable();
+            $table->string('surveylink')->nullable();
             $table->timestamps();
         });
     }

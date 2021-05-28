@@ -11,6 +11,9 @@ use App\Models\Project;
 use App\Models\Question;
 use App\Models\Addquestion;
 use App\Models\Defanswers;
+use App\Models\Addanswer;
+use App\Models\Queanswer;
+use App\Models\Suranswer;
 
 class ClientController extends Controller
 {
@@ -39,5 +42,17 @@ class ClientController extends Controller
         $addquesions = Addquestion::where('survey_id', '=', $id)->get();
         $defanswers = Defanswers::all();
         return view('client.detailSurvey', compact('options', 'projects', 'questions', 'addquesions', 'defanswers'));
+    }
+
+    public function surveyReport($id){        
+        $projects = Project::all();
+        $defanswers = Defanswers::all();
+        $questions = Question::where('survey_id', '=', $id)->get();
+        $addquesions = Addquestion::where('survey_id', '=', $id)->get();
+        $suranswers = Suranswer::where('survey_id', '=', $id)->get();
+        $queanswers = Queanswer::where('survey_id', '=', $id)->get();
+        $addanswers = Addanswer::where('survey_id', '=', $id)->get();
+        return view('client.surveyReport', 
+                    compact('projects', 'defanswers', 'questions', 'addquesions', 'suranswers', 'queanswers', 'addanswers'));
     }
 }

@@ -485,47 +485,57 @@ class AdminController extends Controller
 
     public function storeSurvey(Request $request){        
         $request->validate([
+            'name' => ['required', 'string', 'max:255', 'unique:surveys'],
             'client_id' => ['required'],
             'project_id' => ['required'],
             'description' => ['required', 'string'],
             'start' => ['required'],
-            'end' => ['required'],
+            'end' => ['required'],           
             'code' => ['required'],
         ]); 
         
-        $options = new Survey([
-            'client_id' => $request['client_id'],
-            'project_id' => $request['project_id'],
-            'description' => $request['description'],
-            'start' => $request['start'],
-            'end' => $request['end'],
-            'culturedim_check' => $request['culturedim_check'],
-            'criticalfact_check' => $request['criticalfact_check'],
-            'balancecard_check' => $request['balancecard_check'],
-            'name_check' => $request['name_check'],
-            'company' => $request['company'],
-            'company_check' => $request['company_check'],
-            'city' => $request['city'],
-            'city_check' => $request['city_check'],
-            'companyarea' => $request['companyarea'],
-            'companyarea_check' => $request['companyarea_check'],
-            'companylevel' => $request['companylevel'],
-            'companylevel_check' => $request['companylevel_check'],
-            'companyjob' => $request['companyjob'],
-            'companylevel_check' => $request['companylevel_check'],
-            'companyjob_check' => $request['companyjob_check'],
-            'surveydate_check' => $request['surveydate_check'],
-            'code' => $request['code'],
-        ]);
-        $options->save();   
+        if(count(Survey::where('name', '=', $request['name'])->get())<1){
+            $options = new Survey([
+                'name' => $request['name'],
+                'client_id' => $request['client_id'],
+                'project_id' => $request['project_id'],
+                'description' => $request['description'],
+                'start' => $request['start'],
+                'end' => $request['end'],
+                'culturedim_check' => $request['culturedim_check'],
+                'criticalfact_check' => $request['criticalfact_check'],
+                'balancecard_check' => $request['balancecard_check'],
+                'name_check' => $request['name_check'],
+                'company' => $request['company'],
+                'company_check' => $request['company_check'],
+                'city' => $request['city'],
+                'city_check' => $request['city_check'],
+                'companyarea' => $request['companyarea'],
+                'companyarea_check' => $request['companyarea_check'],
+                'companylevel' => $request['companylevel'],
+                'companylevel_check' => $request['companylevel_check'],
+                'companyjob' => $request['companyjob'],
+                'companylevel_check' => $request['companylevel_check'],
+                'companyjob_check' => $request['companyjob_check'],
+                'surveydate_check' => $request['surveydate_check'],
+                'code' => $request['code'],
+            ]);
+            $options->save();   
 
-        $survey_id = Survey::where('name', '=', $request['name'])->first()->id;
-        $question_id = Project::find($request['project_id'])->question;
-        $questions = Evaluation::pluck($question_id);
-        $questions->push($survey_id);
-        // dd($questions);
+            $survey_id = Survey::where('name', '=', $request['name'])->first()->id;
 
-        return response()->json(['success'=>$questions]);
+            $options = Survey::find($survey_id);
+            $options->surveylink = url('/').'/'.'answer/'.$survey_id;
+            $options->save();   
+
+            $question_id = Project::find($request['project_id'])->question;
+            $questions = Evaluation::pluck($question_id);
+            $questions->push($survey_id);
+
+            return response()->json(['success'=>$questions]);
+        }else{            
+            return response()->json('failed');
+        }
        
     }
 
