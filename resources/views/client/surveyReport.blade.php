@@ -150,7 +150,7 @@
                         <table class="table align-items-center table-flush text-center"  id="datatable-basic2">
                             <thead class="thead-light">
                                 <tr>    
-                                    <th>Survery Answer Id</th>
+                                    <th>Answer ID</th>
                                     @foreach ($addquesions as $option)                               
                                         <th scope="col">{{$option->name}}</th>                                     
                                     @endforeach                                                                
@@ -160,12 +160,12 @@
                                 @foreach ($suranswers as $option)
                                    <tr>
                                         <td>
-                                            {{$option->addanswers()->where('survey_id', $option->survey_id)->first()->suranswer_id}}
+                                            {{$option->addanswers()->where('survey_id', $option->survey_id)->first()->suranswer_id ?? ''}}
                                         </td>
                                         @foreach ($addquesions as $item)
                                             
                                             <td>
-                                                {{$option->addanswers()->where('suranswer_id', $option->id)->where('addquestion_id', $item->id)->first()->addanswer}}    
+                                                {{$option->addanswers()->where('suranswer_id', $option->id)->where('addquestion_id', $item->id)->first()->addanswer ?? ''}}    
                                             </td>
                                         @endforeach       
                                    </tr>

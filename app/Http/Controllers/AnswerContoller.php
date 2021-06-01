@@ -19,7 +19,8 @@ class AnswerContoller extends Controller
         $questions = Question::where('survey_id', '=', $id)->where('checked', 1)->get();
         $addquesions = Addquestion::where('survey_id', '=', $id)->get();
         $defanswers = Defanswers::all();
-        return view('answer.index', compact('options', 'questions', 'addquesions', 'defanswers'));
+        $projects = Project::all();
+        return view('answer.index', compact('options', 'questions', 'addquesions', 'defanswers', 'projects'));
     }
 
     public function checkCode(Request $request){
@@ -53,7 +54,7 @@ class AnswerContoller extends Controller
             'survey_date' => $request['survey_date'],            
         ]);
         $options->save();   
-        $suranswer_id = $options->id;
+        $suranswer_id = $options->id;       
         // return response()->json('success');
         return response()->json(['success'=>$suranswer_id]);
     }
@@ -62,6 +63,7 @@ class AnswerContoller extends Controller
         $survey_id = $request['survey_id'];
         $questions = $request['questions'];
         $answers = $request['answers'];
+        $suranswer_id = $request['suranswer_id'];
 
         $questions = explode(",", $questions);
         $answers = explode(",", $answers);
@@ -69,7 +71,8 @@ class AnswerContoller extends Controller
             $options = new Queanswer([
                 'survey_id' => $request['survey_id'], 
                 'question_id' => $questions[$i],  
-                'que_answer' => $answers[$i],               
+                'que_answer' => $answers[$i],  
+                'suranswer_id' => $suranswer_id,             
             ]);
             $options->save();
         }
@@ -96,6 +99,7 @@ class AnswerContoller extends Controller
         }
        
         return response()->json(['success'=>$survey_id]);
+        
     }
 
     

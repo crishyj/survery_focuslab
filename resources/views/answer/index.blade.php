@@ -163,8 +163,12 @@
 
                                 <div class="step3">
                                     <div class="text-center mb-5">
-                                        <h3>
-                                            
+                                        <h3>                                           
+                                            @foreach ($projects as $item)
+                                                @if ($item->id == $option->project_id)
+                                                    {{ $item->heading }}
+                                                @endif                                                
+                                            @endforeach
                                         </h3>
                                     </div>
 
@@ -422,13 +426,15 @@
                     temp2 = '';
                 }               
                 
-                let _token = $('input[name=_token]').val();                
+                let _token = $('input[name=_token]').val();   
+                let suranswer_id = $('#suranswer_id').val();             
 
                 var form_data =new FormData();
                 form_data.append("_token", _token);
                 form_data.append("survey_id", survey_id);
                 form_data.append("answers", answer_array);
                 form_data.append("questions", question_array);
+                form_data.append("suranswer_id", suranswer_id);
 
                 $.ajax({
                     url: "{{ route('queanswer') }}",

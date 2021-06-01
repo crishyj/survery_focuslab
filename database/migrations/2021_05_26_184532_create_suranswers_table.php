@@ -15,7 +15,7 @@ class CreateSuranswersTable extends Migration
     {
         Schema::create('suranswers', function (Blueprint $table) {
             $table->id();
-            $table->string('survey_id')->nullable();
+            $table->string('survey_id')->nullable();            
             $table->string('user_name')->nullable();
             $table->string('company')->nullable();
             $table->string('city')->nullable();

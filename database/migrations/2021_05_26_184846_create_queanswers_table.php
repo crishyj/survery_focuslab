@@ -16,6 +16,7 @@ class CreateQueanswersTable extends Migration
         Schema::create('queanswers', function (Blueprint $table) {
             $table->id();
             $table->string('survey_id')->nullable();
+            $table->string('suranswer_id')->nullable();
             $table->string('question_id')->nullable();
             $table->string('que_answer')->nullable();
             $table->timestamps();
