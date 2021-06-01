@@ -13,9 +13,9 @@
                         <div class="col-md-6">
                             <div class="mb-5">
                                 <div class="text-center">
-                                    <h6>
+                                    <h4>
                                       PERFIL GLOBAL CULTURAL
-                                    </h6>
+                                    </h4>
                                 </div>
                                 <div>
                                   <canvas id="myChart1" height="280" width="600"></canvas>
@@ -26,9 +26,9 @@
                         <div class="col-md-6">
                             <div class="mb-5">
                                 <div class="text-center">
-                                    <h6>
+                                    <h4>
                                         INDICE EVAS
-                                    </h6>
+                                    </h4>
                                 </div>
                                 <div>
                                     <canvas id="myChart2" height="280" width="600"></canvas>
@@ -39,9 +39,9 @@
                         <div class="col-md-6">
                             <div class="mb-5">
                                 <div class="text-center">
-                                    <h6>
+                                    <h4>
                                         INDICE EVAS
-                                    </h6>
+                                    </h4>
                                 </div>
                                 <div>
                                     <canvas id="myChart3" height="280" width="600"></canvas>
@@ -52,9 +52,9 @@
                         <div class="col-md-6">
                             <div class="mb-5">
                                 <div class="text-center">
-                                    <h6>
+                                    <h4>
                                         FORTALEZAS
-                                    </h6>
+                                    </h4>
                                 </div>
                                 <div>
                                     <canvas id="myChart4" height="280" width="600"></canvas>
@@ -65,9 +65,9 @@
                         <div class="col-md-6">
                             <div class="mb-5">
                                 <div class="text-center">
-                                    <h6>
+                                    <h4>
                                         FORTALEZAS
-                                    </h6>
+                                    </h4>
                                 </div>
                                 <div>
                                     <canvas id="myChart5" height="280" width="600"></canvas>
@@ -79,9 +79,9 @@
                         <div class="col-md-6">
                             <div class="mb-5">
                                 <div class="text-center">
-                                    <h6>
+                                    <h4>
                                         DIMENSIONES CULTURALES
-                                    </h6>
+                                    </h4>
                                 </div>
                                 <div>
                                     <canvas id="myChart6" height="280" width="600"></canvas>
@@ -92,9 +92,9 @@
                         <div class="col-md-6">
                             <div class="mb-5">
                                 <div class="text-center">
-                                    <h6>
+                                    <h4>
                                         FACTORES CRÍTICOS
-                                    </h6>
+                                    </h4>
                                 </div>
                                 <div>
                                     <canvas id="myChart7" height="280" width="600"></canvas>
@@ -105,9 +105,9 @@
                         <div class="col-md-6">
                             <div class="mb-5">
                                 <div class="text-center">
-                                    <h6>
+                                    <h4>
                                         CUADRO DE MANDO INTEGRAL
-                                    </h6>
+                                    </h4>
                                 </div>
                                 <div>
                                     <canvas id="myChart8" height="280" width="600"></canvas>
@@ -138,6 +138,8 @@
 @push('js')
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
 <script>
     var ctx = document.getElementById('myChart1');
     var chart1 = <?php echo $chart1; ?>;
@@ -165,13 +167,18 @@
                 borderWidth: 1
             }]
         },
-        options: {            
+        options: {
+            legend: {
+                    display: false,                    
+            },
             plugins: {
+                labels: {
+                    render: 'percentage',
+                    fontColor: ['white', 'white', 'white', 'white'],
+                    precision: 2
+                },
                 legend: {
-                    display: false,
-                    labels: {
-                        color: 'rgb(255, 99, 132)'
-                    }
+                    display: false,                    
                 },
                 scales: {
                     x: {
@@ -185,7 +192,8 @@
                             display: false,                           
                         }
                     }
-                }
+                },              
+
             }
         }
     });
@@ -212,14 +220,16 @@
                 borderWidth: 1
             }]
         },
-        options: {            
+        options: {   
+            legend: {
+                    display: false,                    
+            },         
             plugins: {
-                legend: {
-                    display: false,
-                    labels: {
-                        color: 'rgb(255, 99, 132)'
-                    }
-                },
+                labels: {
+                    render: 'percentage',
+                    fontColor: ['white', 'blue'],
+                    precision: 2
+                },                
                 scales: {
                     x: {
                         grid: {
@@ -258,23 +268,27 @@
             }]
         },
         options: {
+            legend: {
+                display: false,                    
+            },
             indexAxis: 'y',            
             plugins: {
-                legend: {
-                    display: false,
-                    labels: {
-                        color: 'rgb(255, 99, 132)'
-                    }
-                },
+                labels: {
+                    render: 'percentage',
+                    fontColor: ['white', 'blue'],
+                    precision: 2
+                },                 
                 scales: {
                     x: {
                         grid: {
                             display: false,
+                            beginAtZero: true,
                         }
                     },
                     y: {
                         grid: {
                             display: false,
+                            beginAtZero: true,
                         }
                     }
                 }
@@ -287,11 +301,10 @@
     var chart4_value = <?php echo $chart4_value; ?>;
 
     var myChart4 = new Chart(ctx4, {
-        type: 'bar',
+        type: 'horizontalBar',
         data: {
             labels: chart4_label,           
             datasets: [{
-                axis: 'y',
                 label: 'FORTALEZAS',
                 data: chart4_value,
                 backgroundColor: [
@@ -312,26 +325,15 @@
             }]
         },
         options: {
-            indexAxis: 'y',            
+            legend: {
+                display: false,                    
+            },
             plugins: {
-                legend: {
-                    display: false,
-                    labels: {
-                        color: 'rgb(255, 99, 132)'
-                    }
-                },
-                scales: {
-                    x: {
-                        grid: {
-                            display: false,
-                        }
-                    },
-                    y: {
-                        grid: {
-                            display: false,
-                        }
-                    }
-                }
+                labels: {
+                    render: 'percentage',             
+                    precision: 2
+                },  
+          
             }
         }
     });
@@ -341,11 +343,10 @@
     var chart5_value = <?php echo $chart5_value; ?>;
 
     var myChart5 = new Chart(ctx5, {
-        type: 'bar',
+        type: 'horizontalBar',
         data: {
             labels: chart5_label,           
             datasets: [{
-                axis: 'y',
                 label: 'FORTALEZAS',
                 data: chart5_value,
                 backgroundColor: [
@@ -366,27 +367,9 @@
             }]
         },
         options: {
-            indexAxis: 'y',
-            plugins: {
-                legend: {
-                    display: false,
-                    labels: {
-                        color: 'rgb(255, 99, 132)'
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    grid: {
-                        display: false,
-                    }
-                },
-                y: {
-                    grid: {
-                        display: false,
-                    }
-                }
-            }
+            legend: {
+                display: false,                    
+            },                 
         }
     });
 
@@ -448,6 +431,9 @@
             }]
         },
         options: {
+            legend: {
+                display: false,                    
+            },
             plugins: {
                 legend: {
                     display: false,
@@ -517,6 +503,9 @@
             }]
         },
         options: {
+            legend: {
+                display: false,                    
+            },
             plugins: {
                 legend: {
                     display: false,
@@ -586,6 +575,9 @@
             }]
         },
         options: {
+            legend: {
+                display: false,                    
+            },
             plugins: {
                 legend: {
                     display: false,

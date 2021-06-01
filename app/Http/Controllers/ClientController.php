@@ -122,10 +122,10 @@ class ClientController extends Controller
 
         $result1 = DB::select(DB::raw($sqlQuery1));
         $chart1 = [];
-        $chart1[] = ($result1[0]->REACTIVO);
-        $chart1[] = ($result1[0]->CONVENCIONAL);
-        $chart1[] = ($result1[0]->EVOLUTIVO);
-        $chart1[] = ($result1[0]->AGIL);
+        $chart1[] = ($result1[0]->REACTIVO) * 100;
+        $chart1[] = ($result1[0]->CONVENCIONAL) * 100;
+        $chart1[] = ($result1[0]->EVOLUTIVO) * 100;
+        $chart1[] = ($result1[0]->AGIL) * 100;
 
         $sqlQuery2 = "SELECT MA.name,
             ((SUM(CASE 	WHEN MR.culture_id=3 AND MR.answer=1 THEN OPCION1
@@ -202,8 +202,8 @@ class ClientController extends Controller
 
         $result2 = DB::select(DB::raw($sqlQuery2));
         $chart2 = [];       
-        $chart2[] = ($result2[0]->INDICE_EVOL);
-        $chart2[] = ($result2[0]->COMP_INDICE_EVOL);
+        $chart2[] = ($result2[0]->INDICE_EVOL) * 100;
+        $chart2[] = ($result2[0]->COMP_INDICE_EVOL) * 100;
 
         $sqlQuery3 = "SELECT 
             (1-((STDDEV(REACTIVO)+STDDEV(CONVENCIONAL)+STDDEV(EVOLUTIVO) +STDDEV(AGIL))/12)) as INDICE_ESTABILIDAD,
