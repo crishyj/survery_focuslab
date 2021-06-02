@@ -380,8 +380,10 @@
 @endpush
 
 @push('js')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.0/Chart.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script> --}}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
 
 <script>
     var ctx = document.getElementById('myChart1');
@@ -415,10 +417,23 @@
                     display: false,                    
             },
             plugins: {
-                labels: {
-                    render: 'percentage',
-                    fontColor: ['white', 'white', 'white', 'white'],
-                    precision: 2
+                datalabels: {
+                    anchor: 'center',
+                    color: 'white',
+                    labels: {
+                        title: {
+                            font: {
+                                weight: 'bold'
+                            }
+                        },
+                        value: {
+                            color: 'green'
+                        },
+                        
+                    },
+                    formatter: function(value, context) {
+                        return Math.round(value) + '%';
+                    }
                 },
                 legend: {
                     display: false,                    
@@ -468,10 +483,23 @@
                     display: false,                    
             },         
             plugins: {
-                labels: {
-                    render: 'percentage',
-                    fontColor: ['white', 'blue'],
-                    precision: 2
+                datalabels: {
+                    anchor: 'center',
+                    color: '',
+                    labels: {
+                        title: {
+                            font: {
+                                weight: 'bold'
+                            }
+                        },
+                        value: {
+                            color: 'green'
+                        },
+                        
+                    },
+                    formatter: function(value, context) {
+                        return Math.round(value) + '%';
+                    }
                 },                
                 scales: {
                     x: {
@@ -516,10 +544,23 @@
             },
             indexAxis: 'y',            
             plugins: {
-                labels: {
-                    render: 'percentage',
-                    fontColor: ['white', 'blue'],
-                    precision: 2
+                datalabels: {
+                    anchor: 'center',
+                    color: '',
+                    labels: {
+                        title: {
+                            font: {
+                                weight: 'bold'
+                            }
+                        },
+                        value: {
+                            color: 'green'
+                        },
+                        
+                    },
+                    formatter: function(value, context) {
+                        return Math.round(value) + '%';
+                    }
                 },                 
                 scales: {
                     x: {
@@ -551,18 +592,18 @@
                 label: 'FORTALEZAS',
                 data: chart4_value,
                 backgroundColor: [
-                    '#4472C4',
-                    '#4472C4',
-                    '#4472C4',
-                    '#4472C4',
-                    '#4472C4',                   
+                    // '#4472C4',
+                    // '#4472C4',
+                    // '#4472C4',
+                    // '#4472C4',
+                    // '#4472C4',                   
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(255, 99, 132, 1)',                    
+                    // 'rgba(255, 99, 132, 1)',
+                    // 'rgba(255, 99, 132, 1)',
+                    // 'rgba(255, 99, 132, 1)',
+                    // 'rgba(255, 99, 132, 1)',
+                    // 'rgba(255, 99, 132, 1)',                    
                 ],
                 borderWidth: 1
             }]
@@ -571,11 +612,25 @@
             legend: {
                 display: false,                    
             },
-            plugins: {
-                labels: {
-                    render: 'percentage',             
-                    precision: 2
-                }, 
+            plugins: {                
+                datalabels: {
+                    anchor: 'end',
+                    color: 'blue',
+                    labels: {
+                        title: {
+                            font: {
+                                weight: 'bold'
+                            }
+                        },
+                        value: {
+                            color: 'green'
+                        },
+                        
+                    },
+                    formatter: function(value, context) {
+                        return Math.round(value*100) + '%';
+                    }
+                }               
             },
             scales: {
                 yAxes: [{
@@ -609,18 +664,18 @@
                 label: 'FORTALEZAS',
                 data: chart5_value,
                 backgroundColor: [
-                    '#4472C4',
-                    '#4472C4',
-                    '#4472C4',
-                    '#4472C4',
-                    '#4472C4',                  
+                    // '#4472C4',
+                    // '#4472C4',
+                    // '#4472C4',
+                    // '#4472C4',
+                    // '#4472C4',                  
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(255, 99, 132, 1)',                   
+                    // 'rgba(255, 99, 132, 1)',
+                    // 'rgba(255, 99, 132, 1)',
+                    // 'rgba(255, 99, 132, 1)',
+                    // 'rgba(255, 99, 132, 1)',
+                    // 'rgba(255, 99, 132, 1)',                   
                 ],
                 borderWidth: 1
             }]
@@ -628,6 +683,26 @@
         options: {
             legend: {
                 display: false,                    
+            },
+            plugins: {                
+                datalabels: {
+                    anchor: 'end',
+                    color: 'blue',
+                    labels: {
+                        title: {
+                            font: {
+                                weight: 'bold'
+                            }
+                        },
+                        value: {
+                            color: 'green'
+                        },
+                        
+                    },
+                    formatter: function(value, context) {
+                        return Math.round(value*100) + '%';
+                    }
+                }               
             },
             scales: {
                 yAxes: [{
@@ -716,6 +791,9 @@
                     labels: {
                         color: 'rgb(255, 99, 132)'
                     }
+                },
+                datalabels: {
+                    display: false,                   
                 }
             }
         }
@@ -788,6 +866,9 @@
                     labels: {
                         color: 'rgb(255, 99, 132)'
                     }
+                },
+                datalabels: {
+                    display: false,                   
                 }
             }  
         }
@@ -860,6 +941,9 @@
                     labels: {
                         color: 'rgb(255, 99, 132)'
                     }
+                },
+                datalabels: {
+                    display: false,                   
                 }
             }
         }
@@ -886,12 +970,25 @@
             legend: {
                 display: false,                    
             },
-            plugins: {
-                labels: {
-                    render: 'percentage',             
-                    precision: 2
-                },  
-          
+            plugins: {                
+                datalabels: {
+                    anchor: 'end',
+                    color: 'blue',
+                    labels: {
+                        title: {
+                            font: {
+                                weight: 'bold'
+                            }
+                        },
+                        value: {
+                            color: 'green'
+                        },
+                        
+                    },
+                    formatter: function(value, context) {
+                        return Math.round(value) + '%';
+                    }
+                }               
             },
             scales: {
                 yAxes: [{
@@ -936,11 +1033,24 @@
                 display: false,                    
             },
             plugins: {
-                labels: {
-                    render: 'percentage',             
-                    precision: 2
-                },  
-          
+                datalabels: {
+                    anchor: 'end',
+                    color: 'blue',
+                    labels: {
+                        title: {
+                            font: {
+                                weight: 'bold'
+                            }
+                        },
+                        value: {
+                            color: 'green'
+                        },
+                        
+                    },
+                    formatter: function(value, context) {
+                        return Math.round(value) + '%';
+                    }
+                }
             },
             scales: {
                 yAxes: [{
@@ -989,6 +1099,24 @@
                     render: 'percentage',             
                     precision: 2
                 },  
+                datalabels: {
+                    anchor: 'end',
+                    color: 'blue',
+                    labels: {
+                        title: {
+                            font: {
+                                weight: 'bold'
+                            }
+                        },
+                        value: {
+                            color: 'green'
+                        },
+                        
+                    },
+                    formatter: function(value, context) {
+                        return Math.round(value) + '%';
+                    }
+                }
           
             },
             scales: {
