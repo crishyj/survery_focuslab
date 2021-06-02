@@ -243,13 +243,13 @@
                             </div>
                             <div class="table-responsive">
                                 <table class="table align-items-center table-flush text-center"  id="datatable-basic100">
-                                    <thead class="thead-light">
+                                    {{-- <thead class="thead-light">
                                         <tr>                                   
                                             <th scope="col">{{ __(' ') }}</th> 
                                             <th scope="col">{{ __(' ') }}</th>                                     
                                             <th scope="col">{{ __(' REACTIVOS ') }}</th>                                                                                                                    
                                         </tr>
-                                    </thead>
+                                    </thead> --}}
                                     <tbody>
                                         @php
                                             $k = 1;
@@ -277,14 +277,14 @@
                             </div>
                             <div class="table-responsive">                               
                                 <table class="table align-items-center table-flush text-center"  id="datatable-basic100">
-                                    <thead class="thead-light">
+                                    {{-- <thead class="thead-light">
                                         <tr>                    
                                             <th scope="col">{{ __(' ') }}</th>               
                                             <th scope="col">{{ __(' ') }}</th>                                     
                                             <th scope="col">{{ __(' CONVENCIONALES ') }}</th> 
                                                                                                                    
                                         </tr>
-                                    </thead>
+                                    </thead> --}}
                                     <tbody>
                                         @php
                                             $k = 1;
@@ -312,14 +312,14 @@
                             </div>
                             <div class="table-responsive">                               
                                 <table class="table align-items-center table-flush text-center"  id="datatable-basic100">
-                                    <thead class="thead-light">
+                                    {{-- <thead class="thead-light">
                                         <tr>               
                                             <th scope="col">{{ __(' ') }}</th>                      
                                             <th scope="col">{{ __(' ') }}</th>                                     
                                             <th scope="col">{{ __(' EVOLUTIVOS_AGILES ') }}</th> 
                                                                                                                    
                                         </tr>
-                                    </thead>
+                                    </thead> --}}
                                     <tbody>
                                         @php
                                             $k = 1;
