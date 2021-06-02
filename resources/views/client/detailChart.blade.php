@@ -115,6 +115,230 @@
                             </div>
                         </div>
 
+                        <div class="col-md-6">
+                            <div class="table-responsive py-4">
+                                <table class="table align-items-center table-flush text-center"  id="datatable-basic100">
+                                    <thead class="thead-light">
+                                        <tr>                                   
+                                            <th scope="col">{{ __(' ') }}</th>                                     
+                                            <th scope="col">{{ __(' REACTIVO ') }}</th> 
+                                            <th scope="col">{{ __(' CONVENCIONAL ') }}</th> 
+                                            <th scope="col">{{ __(' EVOLUTIVO ') }}</th>
+                                            <th scope="col">{{ __(' AGIL ') }}</th>                                                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($result9s as $option)
+                                            <tr>                 
+                                                <td>{{ $option->name }}</td>                                      
+                                                <td>{{ $option->REACTIVO }}</td>         
+                                                <td>{{ $option->CONVENCIONAL }}</td>         
+                                                <td>{{ $option->EVOLUTIVO }}</td>         
+                                                <td>{{ $option->AGIL }}</td>       
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-5">
+                                <div class="text-center">
+                                    <h4>
+                                        INDICE EVAS
+                                    </h4>
+                                </div>
+                                <div>
+                                    <canvas id="myChart10"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="table-responsive py-4">
+                                <table class="table align-items-center table-flush text-center"  id="datatable-basic100">
+                                    <thead class="thead-light">
+                                        <tr>                                   
+                                            <th scope="col">{{ __(' ') }}</th>                                     
+                                            <th scope="col">{{ __(' REACTIVO ') }}</th> 
+                                            <th scope="col">{{ __(' CONVENCIONAL ') }}</th> 
+                                            <th scope="col">{{ __(' EVOLUTIVO ') }}</th>
+                                            <th scope="col">{{ __(' AGIL ') }}</th>                                                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($result11s as $option)
+                                            <tr>                 
+                                                <td>{{ $option->name }}</td>                                      
+                                                <td>{{ $option->REACTIVO }}</td>         
+                                                <td>{{ $option->CONVENCIONAL }}</td>         
+                                                <td>{{ $option->EVOLUTIVO }}</td>         
+                                                <td>{{ $option->AGIL }}</td>       
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-5">
+                                <div class="text-center">
+                                    <h4>
+                                        INDICE EVAS
+                                    </h4>
+                                </div>
+                                <div>
+                                    <canvas id="myChart12"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="table-responsive py-4">
+                                <table class="table align-items-center table-flush text-center"  id="datatable-basic100">
+                                    <thead class="thead-light">
+                                        <tr>                                   
+                                            <th scope="col">{{ __(' ') }}</th>                                     
+                                            <th scope="col">{{ __(' REACTIVO ') }}</th> 
+                                            <th scope="col">{{ __(' CONVENCIONAL ') }}</th> 
+                                            <th scope="col">{{ __(' EVOLUTIVO ') }}</th>
+                                            <th scope="col">{{ __(' AGIL ') }}</th>                                                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($result13s as $option)
+                                            <tr>                 
+                                                <td>{{ $option->name }}</td>                                      
+                                                <td>{{ $option->REACTIVO }}</td>         
+                                                <td>{{ $option->CONVENCIONAL }}</td>         
+                                                <td>{{ $option->EVOLUTIVO }}</td>         
+                                                <td>{{ $option->AGIL }}</td>       
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-5">
+                                <div class="text-center">
+                                    <h4>
+                                        INDICE EVAS
+                                    </h4>
+                                </div>
+                                <div>
+                                    <canvas id="myChart14"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <div class="text-center bg-dark text-white chart_title">
+                                <h4>
+                                    COMPONENTS MAS REACTIVOS
+                                </h4>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table align-items-center table-flush text-center"  id="datatable-basic100">
+                                    <thead class="thead-light">
+                                        <tr>                                   
+                                            <th scope="col">{{ __(' ') }}</th> 
+                                            <th scope="col">{{ __(' ') }}</th>                                     
+                                            <th scope="col">{{ __(' REACTIVOS ') }}</th>                                                                                                                    
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php
+                                            $k = 1;
+                                        @endphp
+                                        @foreach ($result15s as $option)
+                                            <tr>   
+                                                <td class="bg-dark text-white px-2">{{ $k }}</td>                 
+                                                <td>{{ $option->name }}</td>                                      
+                                                <td>{{ $option->REACTIVOS }}</td>                                                             
+                                            </tr>
+                                            @php
+                                                $k++;
+                                            @endphp
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <div class="text-center bg-gray text-white chart_title">
+                                <h4>
+                                    COMPONENTS MAS CONVENCIONALES
+                                </h4>
+                            </div>
+                            <div class="table-responsive">                               
+                                <table class="table align-items-center table-flush text-center"  id="datatable-basic100">
+                                    <thead class="thead-light">
+                                        <tr>                    
+                                            <th scope="col">{{ __(' ') }}</th>               
+                                            <th scope="col">{{ __(' ') }}</th>                                     
+                                            <th scope="col">{{ __(' CONVENCIONALES ') }}</th> 
+                                                                                                                   
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php
+                                            $k = 1;
+                                        @endphp
+                                        @foreach ($result16s as $option)
+                                            <tr>              
+                                                <td class="bg-gray text-white px-2">{{ $k }}</td>   
+                                                <td>{{ $option->name }}</td>                                      
+                                                <td>{{ $option->CONVENCIONALES }}</td>                                                             
+                                            </tr>
+                                            @php
+                                                $k++;
+                                            @endphp
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <div class="text-center bg-blue text-white chart_title">
+                                <h4>
+                                    COMPONENTS MAS EVOLUTIVOS_AGILES
+                                </h4>
+                            </div>
+                            <div class="table-responsive">                               
+                                <table class="table align-items-center table-flush text-center"  id="datatable-basic100">
+                                    <thead class="thead-light">
+                                        <tr>               
+                                            <th scope="col">{{ __(' ') }}</th>                      
+                                            <th scope="col">{{ __(' ') }}</th>                                     
+                                            <th scope="col">{{ __(' EVOLUTIVOS_AGILES ') }}</th> 
+                                                                                                                   
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php
+                                            $k = 1;
+                                        @endphp
+                                        @foreach ($result17s as $option)
+                                            <tr>          
+                                                <td class="bg-blue text-white px-2">{{ $k }}</td>       
+                                                <td>{{ $option->name }}</td>                                      
+                                                <td>{{ $option->EVOLUTIVOS_AGILES }}</td>                                                             
+                                            </tr>
+                                            @php
+                                            $k++;
+                                            @endphp
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -123,23 +347,42 @@
 </div>
 @endsection
 
-@push('css')
-<style>
-    canvas{
-        max-width: 500px !important;
-        height: auto !important;
-        margin: auto;
-        width: 100% !important;
-    }
-</style>
-    
+@push('css') 
+    <style>
+        canvas{
+            max-width: 500px !important;
+            margin: auto;
+            width: 100% !important;
+        }
+
+        #myChart10,
+        #myChart12,
+        #myChart14,
+        #myChart16{
+            margin-top: 42px;
+        }
+
+        .card .table td, .card .table th{
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .table td{
+            padding-top: 0px;
+            padding-bottom: 0px;
+            height: 30px;
+        }
+
+        .chart_title h4{
+            color: #ffffff;
+        }
+    </style>    
 @endpush
 
 @push('js')
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
+
 <script>
     var ctx = document.getElementById('myChart1');
     var chart1 = <?php echo $chart1; ?>;
@@ -332,8 +575,24 @@
                 labels: {
                     render: 'percentage',             
                     precision: 2
-                },  
-          
+                }, 
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                    }, 
+                    gridLines: {
+                        display: false,
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                    }, 
+                    gridLines: {
+                        display: false,
+                    }
+                }],
+               
             }
         }
     });
@@ -369,7 +628,24 @@
         options: {
             legend: {
                 display: false,                    
-            },                 
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                    }, 
+                    gridLines: {
+                        display: false,
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                    }, 
+                    gridLines: {
+                        display: false,
+                    }
+                }],
+               
+            }                 
         }
     });
 
@@ -588,6 +864,154 @@
             }
         }
     });
+
+    var ctx10 = document.getElementById('myChart10');
+    var chart10_label = <?php echo $chart10_label; ?>;
+    var chart10_value = <?php echo $chart10_firstValue; ?>;
+    console.log(chart10_label.length);
+
+    $('#myChart10').css('height', (chart10_label.length*31)+'px');    
+
+    var myChart10 = new Chart(ctx10, {
+        type: 'horizontalBar',
+        data: {
+            labels: chart10_label,           
+            datasets: [{
+                label: '',
+                data: chart10_value,               
+                borderWidth: 1
+            }]
+        },
+        options: {
+            legend: {
+                display: false,                    
+            },
+            plugins: {
+                labels: {
+                    render: 'percentage',             
+                    precision: 2
+                },  
+          
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        display: false,
+                    }, 
+                    gridLines: {
+                        display: false,
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        display: false,
+                    }, 
+                    gridLines: {
+                        display: false,
+                    }
+                }],
+               
+            }
+        }
+    });
+
+    var ctx12 = document.getElementById('myChart12');
+    var chart12_label = <?php echo $chart12_label; ?>;
+    var chart12_value = <?php echo $chart12_firstValue; ?>;
+
+    $('#myChart12').css('height', (chart12_label.length*31)+'px');
+
+    var myChart12 = new Chart(ctx12, {
+        type: 'horizontalBar',
+        data: {
+            labels: chart12_label,           
+            datasets: [{
+                label: '',
+                data: chart12_value,    
+                borderWidth: 1
+            }]
+        },
+        options: {
+            legend: {
+                display: false,                    
+            },
+            plugins: {
+                labels: {
+                    render: 'percentage',             
+                    precision: 2
+                },  
+          
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        display: false,
+                    }, 
+                    gridLines: {
+                        display: false,
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        display: false,
+                    }, 
+                    gridLines: {
+                        display: false,
+                    }
+                }],
+               
+            }
+        }
+    });
+
+    var ctx14 = document.getElementById('myChart14');
+    var chart14_label = <?php echo $chart14_label; ?>;
+    var chart14_value = <?php echo $chart14_firstValue; ?>;
+
+    $('#myChart14').css('height', (chart14_label.length*31)+'px');
+
+    var myChart14 = new Chart(ctx14, {
+        type: 'horizontalBar',
+        data: {
+            labels: chart14_label,           
+            datasets: [{
+                label: '',
+                data: chart14_value,    
+                borderWidth: 1
+            }]
+        },
+        options: {
+            legend: {
+                display: false,                    
+            },
+            plugins: {
+                labels: {
+                    render: 'percentage',             
+                    precision: 2
+                },  
+          
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        display: false,
+                    }, 
+                    gridLines: {
+                        display: false,
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        display: false,
+                    }, 
+                    gridLines: {
+                        display: false,
+                    }
+                }],
+               
+            }
+        }
+    });   
 
 </script>
     

@@ -573,14 +573,14 @@ class ClientController extends Controller
                     AND F.id=R.question_id
                     AND F.survey_id=S.survey_id
                     AND S.id=R.suranswer_id
-            /* FILTERS --------------------*/       
-            /*       AND S.user_name=''*/
-            /*       AND S.company='EMPRESA 3'*/
-            /*       AND S.city=''*/
-            /*       AND S.comany_job=''*/
-            /*       AND S.company_area=''*/
-            /*       AND S.company_level=''*/
-            /*       AND S.survey_date=''*/
+            -- /* FILTERS --------------------*/       
+            -- /*       AND S.user_name=''*/
+            -- /*       AND S.company='EMPRESA 3'*/
+            -- /*       AND S.city=''*/
+            -- /*       AND S.comany_job=''*/
+            -- /*       AND S.company_area=''*/
+            -- /*       AND S.company_level=''*/
+            -- /*       AND S.survey_date=''*/
                 AND F.survey_id = $id /*  insert PROJETC ID*/
             GROUP BY F.evaluation_id, F.name
             
@@ -605,8 +605,465 @@ class ClientController extends Controller
             $chart8_thirdValue[]  = ($result->EVOLUTIVO);
             $chart8_fourthValue[]  = ($result->AGIL);
         } 
-       
-        return view('client.detailChart')
+
+        $sqlQuery9 = "SELECT MA.name,
+            (SUM(CASE 	WHEN MR.culture_id=1 AND MR.answer=1 THEN OPCION1
+                        WHEN MR.culture_id=1 AND MR.answer=2 THEN OPCION2
+                        WHEN MR.culture_id=1 AND MR.answer=3 THEN OPCION3
+                        WHEN MR.culture_id=1 AND MR.answer=4 THEN OPCION4
+                ELSE 0 END)/SUM(CASE WHEN MR.answer=1 THEN (OPCION1+OPCION2+OPCION3+OPCION4) ELSE 0 END )) AS REACTIVO,
+            (SUM(CASE 	WHEN MR.culture_id=2 AND MR.answer=1 THEN OPCION1
+                        WHEN MR.culture_id=2 AND MR.answer=2 THEN OPCION2
+                        WHEN MR.culture_id=2 AND MR.answer=3 THEN OPCION3
+                        WHEN MR.culture_id=2 AND MR.answer=4 THEN OPCION4
+                ELSE 0 END)/SUM(CASE WHEN MR.answer=1 THEN (OPCION1+OPCION2+OPCION3+OPCION4) ELSE 0 END )) AS CONVENCIONAL,
+            (SUM(CASE 	WHEN MR.culture_id=3 AND MR.answer=1 THEN OPCION1
+                        WHEN MR.culture_id=3 AND MR.answer=2 THEN OPCION2
+                        WHEN MR.culture_id=3 AND MR.answer=3 THEN OPCION3
+                        WHEN MR.culture_id=3 AND MR.answer=4 THEN OPCION4
+                ELSE 0 END)/SUM(CASE WHEN MR.answer=1 THEN (OPCION1+OPCION2+OPCION3+OPCION4) ELSE 0 END )) AS EVOLUTIVO,
+            (SUM(CASE 	WHEN MR.culture_id=4 AND MR.answer=1 THEN OPCION1
+                        WHEN MR.culture_id=4 AND MR.answer=2 THEN OPCION2
+                        WHEN MR.culture_id=4 AND MR.answer=3 THEN OPCION3
+                        WHEN MR.culture_id=4 AND MR.answer=4 THEN OPCION4
+                ELSE 0 END)/SUM(CASE WHEN MR.answer=1 THEN (OPCION1+OPCION2+OPCION3+OPCION4) ELSE 0 END )) AS AGIL
+            
+            FROM
+            modelanlayses MR,
+            attributes MA,
+            
+            (
+            SELECT F.evaluation_id, F.name,
+            SUM(CASE WHEN R.que_answer=1 THEN 1 ELSE 0 END) AS OPCION1,
+            SUM(CASE WHEN R.que_answer=2 THEN 1 ELSE 0 END) AS OPCION2,
+            SUM(CASE WHEN R.que_answer=3 THEN 1 ELSE 0 END) AS OPCION3,
+            SUM(CASE WHEN R.que_answer=4 THEN 1 ELSE 0 END) AS OPCION4
+                FROM
+                    questions F,
+                    queanswers R,
+                    suranswers S
+                WHERE
+                    F.survey_id=R.survey_id
+                    AND F.id=R.question_id
+                    AND F.survey_id=S.survey_id
+                    AND S.id=R.suranswer_id
+            -- /* FILTERS --------------------*/       
+            -- /*       AND S.user_name=''*/
+            -- /*       AND S.company='EMPRESA 3'*/
+            -- /*       AND S.city=''*/
+            -- /*       AND S.comany_job=''*/
+            -- /*       AND S.company_area=''*/
+            -- /*       AND S.company_level=''*/
+            -- /*       AND S.survey_date=''*/
+                AND F.survey_id = $id  /*  insert PROJETC ID*/
+            GROUP BY F.evaluation_id, F.name
+            
+            ) dataset
+            WHERE
+            MR.evaluation_id=dataset.evaluation_id
+            and MA.id=MR.attribute_id
+            AND MA.model_id=2
+            GROUP BY MA.name";
+
+        $result9s = DB::select(DB::raw($sqlQuery9));      
+        
+        
+        $sqlQuery10 = "SELECT MA.name,
+            ((SUM(CASE 	WHEN MR.culture_id=3 AND MR.answer=1 THEN OPCION1
+                        WHEN MR.culture_id=3 AND MR.answer=2 THEN OPCION2
+                        WHEN MR.culture_id=3 AND MR.answer=3 THEN OPCION3
+                        WHEN MR.culture_id=3 AND MR.answer=4 THEN OPCION4
+                ELSE 0 END)/SUM(CASE WHEN MR.answer=1 THEN (OPCION1+OPCION2+OPCION3+OPCION4) ELSE 0 END )) +
+            (SUM(CASE 	WHEN MR.culture_id=4 AND MR.answer=1 THEN OPCION1
+                        WHEN MR.culture_id=4 AND MR.answer=2 THEN OPCION2
+                        WHEN MR.culture_id=4 AND MR.answer=3 THEN OPCION3
+                        WHEN MR.culture_id=4 AND MR.answer=4 THEN OPCION4
+                ELSE 0 END)/SUM(CASE WHEN MR.answer=1 THEN (OPCION1+OPCION2+OPCION3+OPCION4) ELSE 0 END )) -
+            
+            (SUM(CASE 	WHEN MR.culture_id=1 AND MR.answer=1 THEN OPCION1
+                        WHEN MR.culture_id=1 AND MR.answer=2 THEN OPCION2
+                        WHEN MR.culture_id=1 AND MR.answer=3 THEN OPCION3
+                        WHEN MR.culture_id=1 AND MR.answer=4 THEN OPCION4
+                ELSE 0 END)/SUM(CASE WHEN MR.answer=1 THEN (OPCION1+OPCION2+OPCION3+OPCION4) ELSE 0 END ))) AS EVAS
+            
+            FROM
+            modelanlayses MR,
+            attributes MA,
+            
+            (
+            SELECT F.evaluation_id, F.name,
+            SUM(CASE WHEN R.que_answer=1 THEN 1 ELSE 0 END) AS OPCION1,
+            SUM(CASE WHEN R.que_answer=2 THEN 1 ELSE 0 END) AS OPCION2,
+            SUM(CASE WHEN R.que_answer=3 THEN 1 ELSE 0 END) AS OPCION3,
+            SUM(CASE WHEN R.que_answer=4 THEN 1 ELSE 0 END) AS OPCION4
+                FROM
+                    questions F,
+                    queanswers R,
+                    suranswers S
+                WHERE
+                    F.survey_id=R.survey_id
+                    AND F.id=R.question_id
+                    AND F.survey_id=S.survey_id
+                    AND S.id=R.suranswer_id
+            -- /* FILTERS --------------------*/       
+            -- /*       AND S.user_name=''*/
+            -- /*       AND S.company='EMPRESA 3'*/
+            -- /*       AND S.city=''*/
+            -- /*       AND S.comany_job=''*/
+            -- /*       AND S.company_area=''*/
+            -- /*       AND S.company_level=''*/
+            -- /*       AND S.survey_date=''*/
+                AND F.survey_id = $id /*  insert PROJETC ID*/
+            GROUP BY F.evaluation_id, F.name
+            
+            ) dataset
+            WHERE
+            MR.evaluation_id=dataset.evaluation_id
+            and MA.id=MR.attribute_id
+            AND MA.model_id=2
+            GROUP BY MA.name";
+
+        $result10 = DB::select(DB::raw($sqlQuery10));
+
+        $chart10_label = [];
+        $chart10_firstValue = [];     
+        foreach ($result10 as $result) {
+            $chart10_label[]  = ($result->name);
+            $chart10_firstValue[]  = ($result->EVAS) * 100;         
+        } 
+
+        $sqlQuery11 = "SELECT MA.name,
+            (SUM(CASE 	WHEN MR.culture_id=1 AND MR.answer=1 THEN OPCION1
+                        WHEN MR.culture_id=1 AND MR.answer=2 THEN OPCION2
+                        WHEN MR.culture_id=1 AND MR.answer=3 THEN OPCION3
+                        WHEN MR.culture_id=1 AND MR.answer=4 THEN OPCION4
+                ELSE 0 END)/SUM(CASE WHEN MR.answer=1 THEN (OPCION1+OPCION2+OPCION3+OPCION4) ELSE 0 END )) AS REACTIVO,
+            (SUM(CASE 	WHEN MR.culture_id=2 AND MR.answer=1 THEN OPCION1
+                        WHEN MR.culture_id=2 AND MR.answer=2 THEN OPCION2
+                        WHEN MR.culture_id=2 AND MR.answer=3 THEN OPCION3
+                        WHEN MR.culture_id=2 AND MR.answer=4 THEN OPCION4
+                ELSE 0 END)/SUM(CASE WHEN MR.answer=1 THEN (OPCION1+OPCION2+OPCION3+OPCION4) ELSE 0 END )) AS CONVENCIONAL,
+            (SUM(CASE 	WHEN MR.culture_id=3 AND MR.answer=1 THEN OPCION1
+                        WHEN MR.culture_id=3 AND MR.answer=2 THEN OPCION2
+                        WHEN MR.culture_id=3 AND MR.answer=3 THEN OPCION3
+                        WHEN MR.culture_id=3 AND MR.answer=4 THEN OPCION4
+                ELSE 0 END)/SUM(CASE WHEN MR.answer=1 THEN (OPCION1+OPCION2+OPCION3+OPCION4) ELSE 0 END )) AS EVOLUTIVO,
+            (SUM(CASE 	WHEN MR.culture_id=4 AND MR.answer=1 THEN OPCION1
+                        WHEN MR.culture_id=4 AND MR.answer=2 THEN OPCION2
+                        WHEN MR.culture_id=4 AND MR.answer=3 THEN OPCION3
+                        WHEN MR.culture_id=4 AND MR.answer=4 THEN OPCION4
+                ELSE 0 END)/SUM(CASE WHEN MR.answer=1 THEN (OPCION1+OPCION2+OPCION3+OPCION4) ELSE 0 END )) AS AGIL
+            
+            FROM
+            modelanlayses MR,
+            attributes MA,
+            
+            (
+            SELECT F.evaluation_id, F.name,
+            SUM(CASE WHEN R.que_answer=1 THEN 1 ELSE 0 END) AS OPCION1,
+            SUM(CASE WHEN R.que_answer=2 THEN 1 ELSE 0 END) AS OPCION2,
+            SUM(CASE WHEN R.que_answer=3 THEN 1 ELSE 0 END) AS OPCION3,
+            SUM(CASE WHEN R.que_answer=4 THEN 1 ELSE 0 END) AS OPCION4
+                FROM
+                    questions F,
+                    queanswers R,
+                    suranswers S
+                WHERE
+                    F.survey_id=R.survey_id
+                    AND F.id=R.question_id
+                    AND F.survey_id=S.survey_id
+                    AND S.id=R.suranswer_id
+            -- /* FILTERS --------------------*/       
+            -- /*       AND S.user_name=''*/
+            -- /*       AND S.company='EMPRESA 3'*/
+            -- /*       AND S.city=''*/
+            -- /*       AND S.comany_job=''*/
+            -- /*       AND S.company_area=''*/
+            -- /*       AND S.company_level=''*/
+            -- /*       AND S.survey_date=''*/
+                AND F.survey_id = $id /*  insert PROJETC ID*/
+            GROUP BY F.evaluation_id, F.name
+            
+            ) dataset
+            WHERE
+            MR.evaluation_id=dataset.evaluation_id
+            and MA.id=MR.attribute_id
+            AND MA.model_id=3
+            GROUP BY MA.name";
+
+        $result11s = DB::select(DB::raw($sqlQuery11));
+        
+        $sqlQuery12 = "SELECT MA.name,
+            ((SUM(CASE 	WHEN MR.culture_id=3 AND MR.answer=1 THEN OPCION1
+                        WHEN MR.culture_id=3 AND MR.answer=2 THEN OPCION2
+                        WHEN MR.culture_id=3 AND MR.answer=3 THEN OPCION3
+                        WHEN MR.culture_id=3 AND MR.answer=4 THEN OPCION4
+                ELSE 0 END)/SUM(CASE WHEN MR.answer=1 THEN (OPCION1+OPCION2+OPCION3+OPCION4) ELSE 0 END )) +
+            (SUM(CASE 	WHEN MR.culture_id=4 AND MR.answer=1 THEN OPCION1
+                        WHEN MR.culture_id=4 AND MR.answer=2 THEN OPCION2
+                        WHEN MR.culture_id=4 AND MR.answer=3 THEN OPCION3
+                        WHEN MR.culture_id=4 AND MR.answer=4 THEN OPCION4
+                ELSE 0 END)/SUM(CASE WHEN MR.answer=1 THEN (OPCION1+OPCION2+OPCION3+OPCION4) ELSE 0 END )) -
+            
+            (SUM(CASE 	WHEN MR.culture_id=1 AND MR.answer=1 THEN OPCION1
+                        WHEN MR.culture_id=1 AND MR.answer=2 THEN OPCION2
+                        WHEN MR.culture_id=1 AND MR.answer=3 THEN OPCION3
+                        WHEN MR.culture_id=1 AND MR.answer=4 THEN OPCION4
+                ELSE 0 END)/SUM(CASE WHEN MR.answer=1 THEN (OPCION1+OPCION2+OPCION3+OPCION4) ELSE 0 END ))) AS EVAS
+            
+            FROM
+            modelanlayses MR,
+            attributes MA,
+            
+            (
+            SELECT F.evaluation_id, F.name,
+            SUM(CASE WHEN R.que_answer=1 THEN 1 ELSE 0 END) AS OPCION1,
+            SUM(CASE WHEN R.que_answer=2 THEN 1 ELSE 0 END) AS OPCION2,
+            SUM(CASE WHEN R.que_answer=3 THEN 1 ELSE 0 END) AS OPCION3,
+            SUM(CASE WHEN R.que_answer=4 THEN 1 ELSE 0 END) AS OPCION4
+                FROM
+                    questions F,
+                    queanswers R,
+                    suranswers S
+                WHERE
+                    F.survey_id=R.survey_id
+                    AND F.id=R.question_id
+                    AND F.survey_id=S.survey_id
+                    AND S.id=R.suranswer_id
+            -- /* FILTERS --------------------*/       
+            -- /*       AND S.user_name=''*/
+            -- /*       AND S.company='EMPRESA 3'*/
+            -- /*       AND S.city=''*/
+            -- /*       AND S.comany_job=''*/
+            -- /*       AND S.company_area=''*/
+            -- /*       AND S.company_level=''*/
+            -- /*       AND S.survey_date=''*/
+                AND F.survey_id = $id /*  insert PROJETC ID*/
+            GROUP BY F.evaluation_id, F.name
+            
+            ) dataset
+            WHERE
+            MR.evaluation_id=dataset.evaluation_id
+            and MA.id=MR.attribute_id
+            AND MA.model_id=3
+            GROUP BY MA.name";
+
+        $result12 = DB::select(DB::raw($sqlQuery12));
+
+        $chart12_label = [];
+        $chart12_firstValue = [];     
+        foreach ($result12 as $result) {
+            $chart12_label[]  = ($result->name);
+            $chart12_firstValue[]  = ($result->EVAS) * 100;         
+        }
+
+        $sqlQuery13 = "SELECT MA.name,
+            (SUM(CASE 	WHEN MR.culture_id=1 AND MR.answer=1 THEN OPCION1
+                        WHEN MR.culture_id=1 AND MR.answer=2 THEN OPCION2
+                        WHEN MR.culture_id=1 AND MR.answer=3 THEN OPCION3
+                        WHEN MR.culture_id=1 AND MR.answer=4 THEN OPCION4
+                ELSE 0 END)/SUM(CASE WHEN MR.answer=1 THEN (OPCION1+OPCION2+OPCION3+OPCION4) ELSE 0 END )) AS REACTIVO,
+            (SUM(CASE 	WHEN MR.culture_id=2 AND MR.answer=1 THEN OPCION1
+                        WHEN MR.culture_id=2 AND MR.answer=2 THEN OPCION2
+                        WHEN MR.culture_id=2 AND MR.answer=3 THEN OPCION3
+                        WHEN MR.culture_id=2 AND MR.answer=4 THEN OPCION4
+                ELSE 0 END)/SUM(CASE WHEN MR.answer=1 THEN (OPCION1+OPCION2+OPCION3+OPCION4) ELSE 0 END )) AS CONVENCIONAL,
+            (SUM(CASE 	WHEN MR.culture_id=3 AND MR.answer=1 THEN OPCION1
+                        WHEN MR.culture_id=3 AND MR.answer=2 THEN OPCION2
+                        WHEN MR.culture_id=3 AND MR.answer=3 THEN OPCION3
+                        WHEN MR.culture_id=3 AND MR.answer=4 THEN OPCION4
+                ELSE 0 END)/SUM(CASE WHEN MR.answer=1 THEN (OPCION1+OPCION2+OPCION3+OPCION4) ELSE 0 END )) AS EVOLUTIVO,
+            (SUM(CASE 	WHEN MR.culture_id=4 AND MR.answer=1 THEN OPCION1
+                        WHEN MR.culture_id=4 AND MR.answer=2 THEN OPCION2
+                        WHEN MR.culture_id=4 AND MR.answer=3 THEN OPCION3
+                        WHEN MR.culture_id=4 AND MR.answer=4 THEN OPCION4
+                ELSE 0 END)/SUM(CASE WHEN MR.answer=1 THEN (OPCION1+OPCION2+OPCION3+OPCION4) ELSE 0 END )) AS AGIL
+            
+            FROM
+            modelanlayses MR,
+            attributes MA,
+            
+            (
+            SELECT F.evaluation_id, F.name,
+            SUM(CASE WHEN R.que_answer=1 THEN 1 ELSE 0 END) AS OPCION1,
+            SUM(CASE WHEN R.que_answer=2 THEN 1 ELSE 0 END) AS OPCION2,
+            SUM(CASE WHEN R.que_answer=3 THEN 1 ELSE 0 END) AS OPCION3,
+            SUM(CASE WHEN R.que_answer=4 THEN 1 ELSE 0 END) AS OPCION4
+                FROM
+                    questions F,
+                    queanswers R,
+                    suranswers S
+                WHERE
+                    F.survey_id=R.survey_id
+                    AND F.id=R.question_id
+                    AND F.survey_id=S.survey_id
+                    AND S.id=R.suranswer_id
+            -- /* FILTERS --------------------*/       
+            -- /*       AND S.user_name=''*/
+            -- /*       AND S.company='EMPRESA 3'*/
+            -- /*       AND S.city=''*/
+            -- /*       AND S.comany_job=''*/
+            -- /*       AND S.company_area=''*/
+            -- /*       AND S.company_level=''*/
+            -- /*       AND S.survey_date=''*/
+                AND F.survey_id = $id /*  insert PROJETC ID*/
+            GROUP BY F.evaluation_id, F.name
+            
+            ) dataset
+            WHERE
+            MR.evaluation_id=dataset.evaluation_id
+            and MA.id=MR.attribute_id
+            AND MA.model_id=4
+            GROUP BY MA.name";
+
+        $result13s = DB::select(DB::raw($sqlQuery13));
+
+        $sqlQuery14 = "SELECT MA.name,
+            ((SUM(CASE 	WHEN MR.culture_id=3 AND MR.answer=1 THEN OPCION1
+                        WHEN MR.culture_id=3 AND MR.answer=2 THEN OPCION2
+                        WHEN MR.culture_id=3 AND MR.answer=3 THEN OPCION3
+                        WHEN MR.culture_id=3 AND MR.answer=4 THEN OPCION4
+                ELSE 0 END)/SUM(CASE WHEN MR.answer=1 THEN (OPCION1+OPCION2+OPCION3+OPCION4) ELSE 0 END )) +
+            (SUM(CASE 	WHEN MR.culture_id=4 AND MR.answer=1 THEN OPCION1
+                        WHEN MR.culture_id=4 AND MR.answer=2 THEN OPCION2
+                        WHEN MR.culture_id=4 AND MR.answer=3 THEN OPCION3
+                        WHEN MR.culture_id=4 AND MR.answer=4 THEN OPCION4
+                ELSE 0 END)/SUM(CASE WHEN MR.answer=1 THEN (OPCION1+OPCION2+OPCION3+OPCION4) ELSE 0 END )) -
+            
+            (SUM(CASE 	WHEN MR.culture_id=1 AND MR.answer=1 THEN OPCION1
+                        WHEN MR.culture_id=1 AND MR.answer=2 THEN OPCION2
+                        WHEN MR.culture_id=1 AND MR.answer=3 THEN OPCION3
+                        WHEN MR.culture_id=1 AND MR.answer=4 THEN OPCION4
+                ELSE 0 END)/SUM(CASE WHEN MR.answer=1 THEN (OPCION1+OPCION2+OPCION3+OPCION4) ELSE 0 END ))) AS EVAS
+            
+            FROM
+            modelanlayses MR,
+            attributes MA,
+            
+            (
+            SELECT F.evaluation_id, F.name,
+            SUM(CASE WHEN R.que_answer=1 THEN 1 ELSE 0 END) AS OPCION1,
+            SUM(CASE WHEN R.que_answer=2 THEN 1 ELSE 0 END) AS OPCION2,
+            SUM(CASE WHEN R.que_answer=3 THEN 1 ELSE 0 END) AS OPCION3,
+            SUM(CASE WHEN R.que_answer=4 THEN 1 ELSE 0 END) AS OPCION4
+                FROM
+                    questions F,
+                    queanswers R,
+                    suranswers S
+                WHERE
+                    F.survey_id=R.survey_id
+                    AND F.id=R.question_id
+                    AND F.survey_id=S.survey_id
+                    AND S.id=R.suranswer_id
+            -- /* FILTERS --------------------*/       
+            -- /*       AND S.user_name=''*/
+            -- /*       AND S.company='EMPRESA 3'*/
+            -- /*       AND S.city=''*/
+            -- /*       AND S.comany_job=''*/
+            -- /*       AND S.company_area=''*/
+            -- /*       AND S.company_level=''*/
+            -- /*       AND S.survey_date=''*/
+                AND F.survey_id=5 /*  insert PROJETC ID*/
+            GROUP BY F.evaluation_id, F.name
+            
+            ) dataset
+            WHERE
+            MR.evaluation_id=dataset.evaluation_id
+            and MA.id=MR.attribute_id
+            AND MA.model_id=4
+            GROUP BY MA.name";
+
+        $result14 = DB::select(DB::raw($sqlQuery14));
+
+        $chart14_label = [];
+        $chart14_firstValue = [];     
+        foreach ($result14 as $result) {
+            $chart14_label[]  = ($result->name);
+            $chart14_firstValue[]  = ($result->EVAS) * 100;         
+        }
+
+        $sqlQuery15 = "SELECT F.name,
+            (SUM(CASE WHEN R.que_answer=1 THEN 1 ELSE 0 END)/ 
+            SUM(CASE WHEN R.que_answer<=4 THEN 1 ELSE 0 END)) AS REACTIVOS
+            FROM
+                questions F,
+                queanswers R,
+                suranswers S
+            WHERE
+                F.survey_id=R.survey_id
+                AND F.id=R.question_id
+                AND F.survey_id=S.survey_id
+                AND S.id=R.suranswer_id
+            -- /* FILTERS --------------------*/       
+            -- /*       AND S.user_name=''*/
+            -- /*       AND S.company='EMPRESA 3'*/
+            -- /*       AND S.city=''*/
+            -- /*       AND S.comany_job=''*/
+            -- /*       AND S.company_area=''*/
+            -- /*       AND S.company_level=''*/
+            -- /*       AND S.survey_date=''*/
+                AND F.survey_id = $id /*  insert PROJETC ID*/
+            GROUP BY  F.name
+            ORDER BY 2 DESC
+            LIMIT 0,5";
+
+        $result15s = DB::select(DB::raw($sqlQuery15));
+
+        $sqlQuery16 = "SELECT F.name,
+            (SUM(CASE WHEN R.que_answer=2 THEN 1 ELSE 0 END)/ 
+            SUM(CASE WHEN R.que_answer<=4 THEN 1 ELSE 0 END)) AS CONVENCIONALES
+            FROM
+                questions F,
+                queanswers R,
+                suranswers S
+            WHERE
+                F.survey_id=R.survey_id
+                AND F.id=R.question_id
+                AND F.survey_id=S.survey_id
+                AND S.id=R.suranswer_id
+            -- /* FILTERS --------------------*/       
+            -- /*       AND S.user_name=''*/
+            -- /*       AND S.company='EMPRESA 3'*/
+            -- /*       AND S.city=''*/
+            -- /*       AND S.comany_job=''*/
+            -- /*       AND S.company_area=''*/
+            -- /*       AND S.company_level=''*/
+            -- /*       AND S.survey_date=''*/
+                    AND F.survey_id = $id /*  insert PROJETC ID*/
+            GROUP BY  F.name
+            ORDER BY 2 DESC
+            LIMIT 0,5";
+
+        $result16s = DB::select(DB::raw($sqlQuery16));
+
+        $sqlQuery17 = "SELECT F.name,
+            (SUM(CASE WHEN R.que_answer>=2 THEN 1 ELSE 0 END)/ 
+            SUM(CASE WHEN R.que_answer<=4 THEN 1 ELSE 0 END)) AS EVOLUTIVOS_AGILES
+            FROM
+                questions F,
+                queanswers R,
+                suranswers S
+            WHERE
+                F.survey_id=R.survey_id
+                AND F.id=R.question_id
+                AND F.survey_id=S.survey_id
+                AND S.id=R.suranswer_id
+            -- /* FILTERS --------------------*/       
+            -- /*       AND S.user_name=''*/
+            -- /*       AND S.company='EMPRESA 3'*/
+            -- /*       AND S.city=''*/
+            -- /*       AND S.comany_job=''*/
+            -- /*       AND S.company_area=''*/
+            -- /*       AND S.company_level=''*/
+            -- /*       AND S.survey_date=''*/
+                    AND F.survey_id = $id /*  insert PROJETC ID*/
+            GROUP BY  F.name
+            ORDER BY 2 DESC
+            LIMIT 0,5";
+
+        $result17s = DB::select(DB::raw($sqlQuery17));
+        
+        return view('client.detailChart', compact('result9s', 'result11s', 'result13s', 'result15s', 'result16s', 'result17s'))
                 ->with('chart1',json_encode($chart1,JSON_NUMERIC_CHECK))
                 ->with('chart2',json_encode($chart2,JSON_NUMERIC_CHECK))
                 ->with('chart3',json_encode($chart2,JSON_NUMERIC_CHECK))
@@ -628,7 +1085,13 @@ class ClientController extends Controller
                 ->with('chart8_firstValue',json_encode($chart8_firstValue,JSON_NUMERIC_CHECK))
                 ->with('chart8_secondValue',json_encode($chart8_secondValue,JSON_NUMERIC_CHECK))
                 ->with('chart8_thirdValue',json_encode($chart8_thirdValue,JSON_NUMERIC_CHECK))
-                ->with('chart8_fourthValue',json_encode($chart8_fourthValue,JSON_NUMERIC_CHECK));    
+                ->with('chart8_fourthValue',json_encode($chart8_fourthValue,JSON_NUMERIC_CHECK))
+                ->with('chart10_label',json_encode($chart10_label,JSON_NUMERIC_CHECK))
+                ->with('chart10_firstValue',json_encode($chart10_firstValue,JSON_NUMERIC_CHECK))
+                ->with('chart12_label',json_encode($chart12_label,JSON_NUMERIC_CHECK))
+                ->with('chart12_firstValue',json_encode($chart12_firstValue,JSON_NUMERIC_CHECK))
+                ->with('chart14_label',json_encode($chart14_label,JSON_NUMERIC_CHECK))
+                ->with('chart14_firstValue',json_encode($chart14_firstValue,JSON_NUMERIC_CHECK));    
     }
     
 }
