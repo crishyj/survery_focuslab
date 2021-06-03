@@ -242,14 +242,7 @@
                                 </h4>
                             </div>
                             <div class="table-responsive">
-                                <table class="table align-items-center table-flush text-center"  id="datatable-basic100">
-                                    {{-- <thead class="thead-light">
-                                        <tr>                                   
-                                            <th scope="col">{{ __(' ') }}</th> 
-                                            <th scope="col">{{ __(' ') }}</th>                                     
-                                            <th scope="col">{{ __(' REACTIVOS ') }}</th>                                                                                                                    
-                                        </tr>
-                                    </thead> --}}
+                                <table class="table align-items-center table-flush text-center"  id="datatable-basic103">                                  
                                     <tbody>
                                         @php
                                             $k = 1;
@@ -276,15 +269,7 @@
                                 </h4>
                             </div>
                             <div class="table-responsive">                               
-                                <table class="table align-items-center table-flush text-center"  id="datatable-basic100">
-                                    {{-- <thead class="thead-light">
-                                        <tr>                    
-                                            <th scope="col">{{ __(' ') }}</th>               
-                                            <th scope="col">{{ __(' ') }}</th>                                     
-                                            <th scope="col">{{ __(' CONVENCIONALES ') }}</th> 
-                                                                                                                   
-                                        </tr>
-                                    </thead> --}}
+                                <table class="table align-items-center table-flush text-center"  id="datatable-basic104">                                   
                                     <tbody>
                                         @php
                                             $k = 1;
@@ -311,15 +296,7 @@
                                 </h4>
                             </div>
                             <div class="table-responsive">                               
-                                <table class="table align-items-center table-flush text-center"  id="datatable-basic100">
-                                    {{-- <thead class="thead-light">
-                                        <tr>               
-                                            <th scope="col">{{ __(' ') }}</th>                      
-                                            <th scope="col">{{ __(' ') }}</th>                                     
-                                            <th scope="col">{{ __(' EVOLUTIVOS_AGILES ') }}</th> 
-                                                                                                                   
-                                        </tr>
-                                    </thead> --}}
+                                <table class="table align-items-center table-flush text-center"  id="datatable-basic105">                                   
                                     <tbody>
                                         @php
                                             $k = 1;
@@ -353,6 +330,10 @@
             max-width: 500px !important;
             margin: auto;
             width: 100% !important;
+        }
+
+        .container{
+            max-width: 1340px;
         }
 
         #myChart10,
