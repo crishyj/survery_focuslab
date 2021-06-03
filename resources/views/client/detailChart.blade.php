@@ -14,6 +14,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group">
+                                    <label for="user_name">User Name</label>
                                     <select class="form-control @error('user_name') is-invalid @enderror" name = 'user_name' id = 'user_name' >
                                         <option value=""> Select User Name </option>
                                         @foreach ($suranswers as $option)
@@ -27,6 +28,7 @@
 
                             <div class="col-md-3">
                                 <div class="form-group">
+                                    <label for="company"> Company </label>
                                     <select class="form-control @error('company') is-invalid @enderror" name = 'company' id = 'company' >
                                         <option value=""> Select Company </option>
                                         @foreach ($suranswers as $option)
@@ -40,6 +42,7 @@
 
                             <div class="col-md-3">
                                 <div class="form-group">
+                                    <label for="city"> City </label>
                                     <select class="form-control @error('city') is-invalid @enderror" name = 'city' id = 'city' >
                                         <option value=""> Select City </option>
                                         @foreach ($suranswers as $option)
@@ -53,6 +56,7 @@
 
                             <div class="col-md-3">
                                 <div class="form-group">
+                                    <label for="company_area"> Company Area </label>
                                     <select class="form-control @error('company_area') is-invalid @enderror" name = 'company_area' id = 'company_area' >
                                         <option value=""> Select Company Area </option>
                                         @foreach ($suranswers as $option)
@@ -66,6 +70,7 @@
 
                             <div class="col-md-3">
                                 <div class="form-group">
+                                    <label for="company_level"> Company Level </label>
                                     <select class="form-control @error('company_level') is-invalid @enderror" name = 'company_level' id = 'company_level' >
                                         <option value=""> Select Company Level </option>
                                         @foreach ($suranswers as $option)
@@ -79,6 +84,7 @@
 
                             <div class="col-md-3">
                                 <div class="form-group">
+                                    <label for="comany_job"> Company Job </label>
                                     <select class="form-control @error('comany_job') is-invalid @enderror" name = 'comany_job' id = 'comany_job' >
                                         <option value=""> Select Company Job </option>
                                         @foreach ($suranswers as $option)
@@ -92,6 +98,7 @@
 
                             <div class="col-md-3">
                                 <div class="form-group">
+                                    <label for="survey_date"> Survey Date </label>
                                     <select class="form-control @error('survey_date') is-invalid @enderror" name = 'survey_date' id = 'survey_date' >
                                         <option value=""> Select Survey Date </option>
                                         @foreach ($suranswers as $option)
@@ -103,9 +110,9 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <button class="btn btn-primary filter_btn">Filter</button>
+                            <div class="col-md-3 ">
+                                <div class="form-group mt-4">
+                                    <button class="btn btn-primary filter_btn ">Filter</button>
                                 </div>
                             </div>
 
