@@ -8,8 +8,111 @@
                 <div class="card-header">{{ __('Chart') }}</div>
 
                 <div class="card-body">
-                    <div class="row">
+                    <form action="" method="POST" class="filter_form">
+                        <input type="hidden" name="id" class="id" id="id" value="{{ collect(request()->segments())->last() }}">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <select class="form-control @error('user_name') is-invalid @enderror" name = 'user_name' id = 'user_name' >
+                                        <option value=""> Select User Name </option>
+                                        @foreach ($suranswers as $option)
+                                            @if ($option->user_name != 'undefined')
+                                                <option value="{{$option->user_name}}" @if($user_name == $option->user_name) selected @endif>{{$option->user_name}}</option>
+                                            @endif   
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
 
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <select class="form-control @error('company') is-invalid @enderror" name = 'company' id = 'company' >
+                                        <option value=""> Select Company </option>
+                                        @foreach ($suranswers as $option)
+                                            @if ($option->company != 'undefined')
+                                                <option value="{{$option->company}}"  @if($company == $option->company) selected @endif>{{$option->company}}</option>
+                                            @endif                                            
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <select class="form-control @error('city') is-invalid @enderror" name = 'city' id = 'city' >
+                                        <option value=""> Select City </option>
+                                        @foreach ($suranswers as $option)
+                                            @if ($option->city != 'undefined')
+                                                <option value="{{$option->city}}" @if($city == $option->city) selected @endif>{{$option->city}}</option>
+                                            @endif                                            
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <select class="form-control @error('company_area') is-invalid @enderror" name = 'company_area' id = 'company_area' >
+                                        <option value=""> Select Company Area </option>
+                                        @foreach ($suranswers as $option)
+                                            @if ($option->company_area != 'undefined')
+                                                <option value="{{$option->company_area}}" @if($company_area == $option->company_area) selected @endif>{{$option->company_area}}</option>
+                                            @endif                                            
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <select class="form-control @error('company_level') is-invalid @enderror" name = 'company_level' id = 'company_level' >
+                                        <option value=""> Select Company Level </option>
+                                        @foreach ($suranswers as $option)
+                                            @if ($option->company_level != 'undefined')
+                                                <option value="{{$option->company_level}}" @if($company_level == $option->company_level) selected @endif>{{$option->company_level}}</option>
+                                            @endif                                            
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <select class="form-control @error('comany_job') is-invalid @enderror" name = 'comany_job' id = 'comany_job' >
+                                        <option value=""> Select Company Job </option>
+                                        @foreach ($suranswers as $option)
+                                            @if ($option->comany_job != 'undefined')
+                                                <option value="{{$option->comany_job}}" @if($comany_job == $option->comany_job) selected @endif>{{$option->comany_job}}</option>
+                                            @endif                                            
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <select class="form-control @error('survey_date') is-invalid @enderror" name = 'survey_date' id = 'survey_date' >
+                                        <option value=""> Select Survey Date </option>
+                                        @foreach ($suranswers as $option)
+                                            @if ($option->survey_date != 'undefined')
+                                                <option value="{{$option->survey_date}}" @if($survey_date == $option->survey_date) selected @endif>{{$option->survey_date}}</option>
+                                            @endif                                            
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <button class="btn btn-primary filter_btn">Filter</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                    <div class="row">
+                        
                         <div class="col-md-4">
                             <div class="mb-5">
                                 <div class="text-center">
@@ -373,8 +476,6 @@
 @endpush
 
 @push('js')
-{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.0/Chart.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script> --}}
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
 
@@ -393,14 +494,12 @@
                     '#66CCFF',
                     '#A5A5A5',
                     '#404040',
-                   
                 ],
                 borderColor: [
                     'rgba(255, 99, 132, 1)',
                     'rgba(54, 162, 235, 1)',
                     'rgba(255, 206, 86, 1)',
                     'rgba(75, 192, 192, 1)',
-                    
                 ],
                 borderWidth: 1
             }]
@@ -461,8 +560,6 @@
                 backgroundColor: [
                     '#CC0099',
                     '#FFFFFF',
-                    
-                   
                 ],
                 borderColor: [
                     'rgba(255, 99, 132, 1)',
@@ -478,7 +575,7 @@
             plugins: {
                 datalabels: {
                     anchor: 'center',
-                    color: 'white',
+                    color: 'lightgrey',
                     labels: {
                         title: {
                             font: {
@@ -539,7 +636,7 @@
             plugins: {
                 datalabels: {
                     anchor: 'center',
-                    color: 'white',
+                    color: 'lightgrey',
                     labels: {
                         title: {
                             font: {
@@ -589,13 +686,7 @@
                 label: 'FORTALEZAS',
                 data: chart4_value,
                 backgroundColor: backgroundColor1,
-                borderColor: [
-                    // 'rgba(255, 99, 132, 1)',
-                    // 'rgba(255, 99, 132, 1)',
-                    // 'rgba(255, 99, 132, 1)',
-                    // 'rgba(255, 99, 132, 1)',
-                    // 'rgba(255, 99, 132, 1)',                    
-                ],
+                borderColor: [],
                 borderWidth: 1
             }]
         },
@@ -660,13 +751,7 @@
                 label: 'FORTALEZAS',
                 data: chart5_value,
                 backgroundColor: backgroundColor2,
-                borderColor: [
-                    // 'rgba(255, 99, 132, 1)',
-                    // 'rgba(255, 99, 132, 1)',
-                    // 'rgba(255, 99, 132, 1)',
-                    // 'rgba(255, 99, 132, 1)',
-                    // 'rgba(255, 99, 132, 1)',                   
-                ],
+                borderColor: [],
                 borderWidth: 1
             }]
         },

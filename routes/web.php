@@ -32,7 +32,9 @@ Auth::routes();
 Route::get('/guest', [App\Http\Controllers\ClientController::class, 'viewSurvey'])->name('guest');
 Route::get('/detailSurvey/{id}', [App\Http\Controllers\ClientController::class, 'detailSurvey'])->name('detailSurvey');
 Route::get('/surveyReport/{id}', [App\Http\Controllers\ClientController::class, 'surveyReport'])->name('surveyReport');
-Route::get('/detailChart/{id}', [App\Http\Controllers\ClientController::class, 'detailChart'])->name('detailChart');
+// Route::get('/detailChart/{id}', [App\Http\Controllers\ClientController::class, 'detailChart'])->name('detailChart');
+Route::any('/detailChart/{id}', [App\Http\Controllers\ClientController::class, 'filterChart'])->name('filterChart');
+
 
 
 Route::group(['middleware' => ['Role']], function () {
