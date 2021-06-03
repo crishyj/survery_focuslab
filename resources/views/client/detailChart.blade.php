@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <div class="row">
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="mb-5">
                                 <div class="text-center">
                                     <h4>
@@ -23,7 +23,7 @@
                               </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="mb-5">
                                 <div class="text-center">
                                     <h4>
@@ -36,7 +36,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="mb-5">
                                 <div class="text-center">
                                     <h4>
@@ -49,7 +49,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="mb-5">
                                 <div class="text-center">
                                     <h4>
@@ -62,7 +62,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="mb-5">
                                 <div class="text-center">
                                     <h4>
@@ -76,7 +76,7 @@
                         </div>
 
 
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <div class="mb-5">
                                 <div class="text-center">
                                     <h4>
@@ -89,42 +89,16 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
-                            <div class="mb-5">
-                                <div class="text-center">
-                                    <h4>
-                                        FACTORES CRÍTICOS
-                                    </h4>
-                                </div>
-                                <div>
-                                    <canvas id="myChart7" height="280" width="600"></canvas>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="mb-5">
-                                <div class="text-center">
-                                    <h4>
-                                        CUADRO DE MANDO INTEGRAL
-                                    </h4>
-                                </div>
-                                <div>
-                                    <canvas id="myChart8" height="280" width="600"></canvas>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <div class="table-responsive py-4">
                                 <table class="table align-items-center table-flush text-center"  id="datatable-basic100">
                                     <thead class="thead-light">
                                         <tr>                                   
                                             <th scope="col">{{ __(' ') }}</th>                                     
-                                            <th scope="col">{{ __(' REACTIVO ') }}</th> 
-                                            <th scope="col">{{ __(' CONVENCIONAL ') }}</th> 
-                                            <th scope="col">{{ __(' EVOLUTIVO ') }}</th>
-                                            <th scope="col">{{ __(' AGIL ') }}</th>                                                                           
+                                            <th scope="col" style="background-color: #595959">{{ __(' REACTIVO ') }}</th> 
+                                            <th scope="col" style="background-color: #D9D9D9">{{ __(' CONVENCIONAL ') }}</th> 
+                                            <th scope="col" style="background-color: #66CCFF">{{ __(' EVOLUTIVO ') }}</th>
+                                            <th scope="col" style="background-color: #33CCCC">{{ __(' AGIL ') }}</th>                                                                           
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -142,7 +116,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-2">
                             <div class="mb-5">
                                 <div class="text-center">
                                     <h4>
@@ -155,16 +129,29 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-5">
+                            <div class="mb-5">
+                                <div class="text-center">
+                                    <h4>
+                                        FACTORES CRÍTICOS
+                                    </h4>
+                                </div>
+                                <div>
+                                    <canvas id="myChart7" height="280" width="600"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5">
                             <div class="table-responsive py-4">
-                                <table class="table align-items-center table-flush text-center"  id="datatable-basic100">
+                                <table class="table align-items-center table-flush text-center"  id="datatable-basic101">
                                     <thead class="thead-light">
-                                        <tr>                                   
-                                            <th scope="col">{{ __(' ') }}</th>                                     
-                                            <th scope="col">{{ __(' REACTIVO ') }}</th> 
-                                            <th scope="col">{{ __(' CONVENCIONAL ') }}</th> 
-                                            <th scope="col">{{ __(' EVOLUTIVO ') }}</th>
-                                            <th scope="col">{{ __(' AGIL ') }}</th>                                                                           
+                                        <tr >                                   
+                                            <th scope="col" style="background-color: ">{{ __(' ') }}</th>                                     
+                                            <th scope="col" style="background-color: #595959">{{ __(' REACTIVO ') }}</th> 
+                                            <th scope="col" style="background-color: #D9D9D9">{{ __(' CONVENCIONAL ') }}</th> 
+                                            <th scope="col" style="background-color: #EAD5FF">{{ __(' EVOLUTIVO ') }}</th>
+                                            <th scope="col" style="background-color: #A375FF">{{ __(' AGIL ') }}</th>                                                                           
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -182,7 +169,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-2">
                             <div class="mb-5">
                                 <div class="text-center">
                                     <h4>
@@ -195,16 +182,29 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-5">
+                            <div class="mb-5">
+                                <div class="text-center">
+                                    <h4>
+                                        CUADRO DE MANDO INTEGRAL
+                                    </h4>
+                                </div>
+                                <div>
+                                    <canvas id="myChart8" height="280" width="600"></canvas>
+                                </div>
+                            </div>
+                        </div>                      
+
+                        <div class="col-md-5">
                             <div class="table-responsive py-4">
-                                <table class="table align-items-center table-flush text-center"  id="datatable-basic100">
+                                <table class="table align-items-center table-flush text-center"  id="datatable-basic102">
                                     <thead class="thead-light">
                                         <tr>                                   
                                             <th scope="col">{{ __(' ') }}</th>                                     
-                                            <th scope="col">{{ __(' REACTIVO ') }}</th> 
-                                            <th scope="col">{{ __(' CONVENCIONAL ') }}</th> 
-                                            <th scope="col">{{ __(' EVOLUTIVO ') }}</th>
-                                            <th scope="col">{{ __(' AGIL ') }}</th>                                                                           
+                                            <th scope="col" style="background-color: #595959">{{ __(' REACTIVO ') }}</th> 
+                                            <th scope="col" style="background-color: #D9D9D9">{{ __(' CONVENCIONAL ') }}</th> 
+                                            <th scope="col" style="background-color: #C5E0B4">{{ __(' EVOLUTIVO ') }}</th>
+                                            <th scope="col" style="background-color: #92D050">{{ __(' AGIL ') }}</th>                                                                           
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -222,7 +222,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-2">
                             <div class="mb-5">
                                 <div class="text-center">
                                     <h4>
@@ -235,7 +235,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6 mb-4">
+                        <div class="col-md-4 mb-4">
                             <div class="text-center bg-dark text-white chart_title">
                                 <h4>
                                     COMPONENTS MAS REACTIVOS
@@ -269,7 +269,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6 mb-4">
+                        <div class="col-md-4 mb-4">
                             <div class="text-center bg-gray text-white chart_title">
                                 <h4>
                                     COMPONENTS MAS CONVENCIONALES
@@ -304,7 +304,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6 mb-4">
+                        <div class="col-md-4 mb-4">
                             <div class="text-center bg-blue text-white chart_title">
                                 <h4>
                                     COMPONENTS MAS EVOLUTIVOS_AGILES
@@ -376,6 +376,18 @@
         .chart_title h4{
             color: #ffffff;
         }
+
+        #datatable-basic100 tr td{
+            border-color: #33CCCC;
+        }
+
+        #datatable-basic101 tr td{
+            border-color: #A375FF;
+        }
+
+        #datatable-basic102 tr td{
+            border-color: #92D050;
+        }
     </style>    
 @endpush
 
@@ -396,10 +408,10 @@
                 label: '',
                 data: chart1,
                 backgroundColor: [
-                    '#4472C4',
-                    '#FFC000',
+                    '#33CCCC',
+                    '#66CCFF',
                     '#A5A5A5',
-                    '#ED7D31',
+                    '#404040',
                    
                 ],
                 borderColor: [
@@ -466,7 +478,7 @@
                 label: '',
                 data: chart2,
                 backgroundColor: [
-                    '#4472C4',
+                    '#CC0099',
                     '#FFFFFF',
                     
                    
@@ -485,7 +497,7 @@
             plugins: {
                 datalabels: {
                     anchor: 'center',
-                    color: '',
+                    color: 'white',
                     labels: {
                         title: {
                             font: {
@@ -528,7 +540,7 @@
                 label: '',
                 data: chart3,
                 backgroundColor: [
-                    '#4472C4',
+                    '#0099CC',
                     '#FFFFFF',                    
                 ],
                 borderColor: [
@@ -546,7 +558,7 @@
             plugins: {
                 datalabels: {
                     anchor: 'center',
-                    color: '',
+                    color: 'white',
                     labels: {
                         title: {
                             font: {
@@ -583,6 +595,10 @@
     var ctx4 = document.getElementById('myChart4');
     var chart4_label = <?php echo $chart4_label; ?>;
     var chart4_value = <?php echo $chart4_value; ?>;
+    var backgroundColor1 = [];
+    for (let i = 0; i < chart4_label.length; i++) {
+        backgroundColor1.push('#00B0F0');
+    }
 
     var myChart4 = new Chart(ctx4, {
         type: 'horizontalBar',
@@ -591,13 +607,7 @@
             datasets: [{
                 label: 'FORTALEZAS',
                 data: chart4_value,
-                backgroundColor: [
-                    // '#4472C4',
-                    // '#4472C4',
-                    // '#4472C4',
-                    // '#4472C4',
-                    // '#4472C4',                   
-                ],
+                backgroundColor: backgroundColor1,
                 borderColor: [
                     // 'rgba(255, 99, 132, 1)',
                     // 'rgba(255, 99, 132, 1)',
@@ -656,6 +666,11 @@
     var chart5_label = <?php echo $chart5_label; ?>;
     var chart5_value = <?php echo $chart5_value; ?>;
 
+    var backgroundColor2 = [];
+    for (let i = 0; i < chart5_label.length; i++) {
+        backgroundColor2.push('#595959');
+    }
+
     var myChart5 = new Chart(ctx5, {
         type: 'horizontalBar',
         data: {
@@ -663,13 +678,7 @@
             datasets: [{
                 label: 'FORTALEZAS',
                 data: chart5_value,
-                backgroundColor: [
-                    // '#4472C4',
-                    // '#4472C4',
-                    // '#4472C4',
-                    // '#4472C4',
-                    // '#4472C4',                  
-                ],
+                backgroundColor: backgroundColor2,
                 borderColor: [
                     // 'rgba(255, 99, 132, 1)',
                     // 'rgba(255, 99, 132, 1)',
@@ -740,9 +749,9 @@
                 label: 'first',
                 data: chart6_firstValue,
                 fill: true,
-                backgroundColor: '#4472C4',
-                borderColor: 'rgb(255, 99, 132)',
-                pointBackgroundColor: 'rgb(255, 99, 132)',
+                backgroundColor: '#595959',
+                borderColor: '',
+                pointBackgroundColor: '',
                 pointBorderColor: '#fff',
                 pointHoverBackgroundColor: '#fff',
                 pointHoverBorderColor: 'rgb(255, 99, 132)'
@@ -751,9 +760,9 @@
                 label: 'second',
                 data: chart6_secondValue,
                 fill: true,
-                backgroundColor: '#FFC000',
-                borderColor: 'rgb(255, 99, 132)',
-                pointBackgroundColor: 'rgb(255, 99, 132)',
+                backgroundColor: '#D9D9D9',
+                borderColor: '',
+                pointBackgroundColor: '',
                 pointBorderColor: '#fff',
                 pointHoverBackgroundColor: '#fff',
                 pointHoverBorderColor: 'rgb(255, 99, 132)'
@@ -762,9 +771,9 @@
                 label: 'third',
                 data: chart6_thirdValue,
                 fill: true,
-                backgroundColor: '#A5A5A5',
-                borderColor: 'rgb(255, 99, 132)',
-                pointBackgroundColor: 'rgb(255, 99, 132)',
+                backgroundColor: '#66CCFF',
+                borderColor: '',
+                pointBackgroundColor: '',
                 pointBorderColor: '#fff',
                 pointHoverBackgroundColor: '#fff',
                 pointHoverBorderColor: 'rgb(255, 99, 132)'
@@ -773,9 +782,9 @@
                 label: 'fourth',
                 data: chart6_fourthValue,
                 fill: true,
-                backgroundColor: '#ED7D31',
-                borderColor: 'rgb(255, 99, 132)',
-                pointBackgroundColor: 'rgb(255, 99, 132)',
+                backgroundColor: '#33CCCC',
+                borderColor: '',
+                pointBackgroundColor: '',
                 pointBorderColor: '#fff',
                 pointHoverBackgroundColor: '#fff',
                 pointHoverBorderColor: 'rgb(255, 99, 132)'
@@ -815,9 +824,9 @@
                 label: 'first',
                 data: chart7_firstValue,
                 fill: true,
-                backgroundColor: '#4472C4',
-                borderColor: 'rgb(255, 99, 132)',
-                pointBackgroundColor: 'rgb(255, 99, 132)',
+                backgroundColor: '#595959',
+                borderColor: '',
+                pointBackgroundColor: '',
                 pointBorderColor: '#fff',
                 pointHoverBackgroundColor: '#fff',
                 pointHoverBorderColor: 'rgb(255, 99, 132)'
@@ -826,9 +835,9 @@
                 label: 'second',
                 data: chart7_secondValue,
                 fill: true,
-                backgroundColor: '#FFC000',
-                borderColor: 'rgb(255, 99, 132)',
-                pointBackgroundColor: 'rgb(255, 99, 132)',
+                backgroundColor: '#D9D9D9',
+                borderColor: '',
+                pointBackgroundColor: '',
                 pointBorderColor: '#fff',
                 pointHoverBackgroundColor: '#fff',
                 pointHoverBorderColor: 'rgb(255, 99, 132)'
@@ -837,9 +846,9 @@
                 label: 'third',
                 data: chart7_thirdValue,
                 fill: true,
-                backgroundColor: '#A5A5A5',
-                borderColor: 'rgb(255, 99, 132)',
-                pointBackgroundColor: 'rgb(255, 99, 132)',
+                backgroundColor: '#EAD5FF',
+                borderColor: '',
+                borderColor: '',
                 pointBorderColor: '#fff',
                 pointHoverBackgroundColor: '#fff',
                 pointHoverBorderColor: 'rgb(255, 99, 132)'
@@ -848,9 +857,9 @@
                 label: 'fourth',
                 data: chart7_fourthValue,
                 fill: true,
-                backgroundColor: '#ED7D31',
-                borderColor: 'rgb(255, 99, 132)',
-                pointBackgroundColor: 'rgb(255, 99, 132)',
+                backgroundColor: '#A375FF',
+                borderColor: '',
+                borderColor: '',
                 pointBorderColor: '#fff',
                 pointHoverBackgroundColor: '#fff',
                 pointHoverBorderColor: 'rgb(255, 99, 132)'
@@ -890,9 +899,9 @@
                 label: 'first',
                 data: chart8_firstValue,
                 fill: true,
-                backgroundColor: '#4472C4',
-                borderColor: 'rgb(255, 99, 132)',
-                pointBackgroundColor: 'rgb(255, 99, 132)',
+                backgroundColor: '#595959',
+                borderColor: '',
+                borderColor: '',
                 pointBorderColor: '#fff',
                 pointHoverBackgroundColor: '#fff',
                 pointHoverBorderColor: 'rgb(255, 99, 132)'
@@ -901,9 +910,9 @@
                 label: 'second',
                 data: chart8_secondValue,
                 fill: true,
-                backgroundColor: '#FFC000',
-                borderColor: 'rgb(255, 99, 132)',
-                pointBackgroundColor: 'rgb(255, 99, 132)',
+                backgroundColor: '#D9D9D9',
+                borderColor: '',
+                borderColor: '',
                 pointBorderColor: '#fff',
                 pointHoverBackgroundColor: '#fff',
                 pointHoverBorderColor: 'rgb(255, 99, 132)'
@@ -912,9 +921,9 @@
                 label: 'third',
                 data: chart8_thirdValue,
                 fill: true,
-                backgroundColor: '#A5A5A5',
-                borderColor: 'rgb(255, 99, 132)',
-                pointBackgroundColor: 'rgb(255, 99, 132)',
+                backgroundColor: '#C5E0B4',
+                borderColor: '',
+                borderColor: '',
                 pointBorderColor: '#fff',
                 pointHoverBackgroundColor: '#fff',
                 pointHoverBorderColor: 'rgb(255, 99, 132)'
@@ -923,9 +932,9 @@
                 label: 'fourth',
                 data: chart8_fourthValue,
                 fill: true,
-                backgroundColor: '#ED7D31',
-                borderColor: 'rgb(255, 99, 132)',
-                pointBackgroundColor: 'rgb(255, 99, 132)',
+                backgroundColor: '#92D050',
+                borderColor: '',
+                borderColor: '',
                 pointBorderColor: '#fff',
                 pointHoverBackgroundColor: '#fff',
                 pointHoverBorderColor: 'rgb(255, 99, 132)'
@@ -951,20 +960,27 @@
 
     var ctx10 = document.getElementById('myChart10');
     var chart10_label = <?php echo $chart10_label; ?>;
-    var chart10_value = <?php echo $chart10_firstValue; ?>;
-    console.log(chart10_label.length);
+    var chart10_value = <?php echo $chart10_firstValue; ?>;    
 
     $('#myChart10').css('height', (chart10_label.length*31)+'px');    
+      
+    var backgroundColor3 = [];
+    for (let i = 0; i < chart10_label.length; i++) {
+        backgroundColor3.push('#00B0F0');
+    }
 
     var myChart10 = new Chart(ctx10, {
         type: 'horizontalBar',
         data: {
-            labels: chart10_label,           
+            labels: chart10_label,                   
             datasets: [{
                 label: '',
-                data: chart10_value,               
+                data: chart10_value,
+                backgroundColor: backgroundColor3, 
+                borderColor: [],              
                 borderWidth: 1
-            }]
+            }],
+           
         },
         options: {
             legend: {
@@ -1018,13 +1034,19 @@
 
     $('#myChart12').css('height', (chart12_label.length*31)+'px');
 
+    var backgroundColor4 = [];
+    for (let i = 0; i < chart12_label.length; i++) {
+        backgroundColor4.push('#A375FF');
+    }
+
     var myChart12 = new Chart(ctx12, {
         type: 'horizontalBar',
         data: {
             labels: chart12_label,           
             datasets: [{
                 label: '',
-                data: chart12_value,    
+                data: chart12_value, 
+                backgroundColor: backgroundColor4,   
                 borderWidth: 1
             }]
         },
@@ -1080,13 +1102,19 @@
 
     $('#myChart14').css('height', (chart14_label.length*31)+'px');
 
+    var backgroundColor5 = [];
+    for (let i = 0; i < chart14_value.length; i++) {
+        backgroundColor5.push('#92D050');
+    }
+
     var myChart14 = new Chart(ctx14, {
         type: 'horizontalBar',
         data: {
             labels: chart14_label,           
             datasets: [{
                 label: '',
-                data: chart14_value,    
+                data: chart14_value, 
+                backgroundColor: backgroundColor5,   
                 borderWidth: 1
             }]
         },

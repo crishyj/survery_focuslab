@@ -61,6 +61,8 @@ class ClientController extends Controller
     }
 
     public function detailChart($id){
+        $suranswers =  Suranswer::where('survey_id', '=', $id)->get();      
+
         $sqlQuery1 = "SELECT MA.name,
             (SUM(CASE 	WHEN MR.culture_id=1 AND MR.answer=1 THEN OPCION1
                         WHEN MR.culture_id=1 AND MR.answer=2 THEN OPCION2
@@ -103,7 +105,7 @@ class ClientController extends Controller
                     AND F.survey_id=S.survey_id
                     AND S.id=R.suranswer_id
             --  /* FILTERS --------------------*/       
-            --  /*       AND S.user_name=''*/
+                    -- AND S.user_name != ''
                     -- AND S.company='EMPRESA 3'
             --  /*       AND S.city=''*/
             --  /*       AND S.comany_job=''*/
