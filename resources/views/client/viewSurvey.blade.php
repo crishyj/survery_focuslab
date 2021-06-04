@@ -48,7 +48,7 @@
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">                                                        
                                                     <a href="{{route('detailSurvey', $option->id)}}" class="dropdown-item" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Detail"><i class="ni ni-bullet-list-67"></i> Detail</a>
                                                     <a href="{{route('surveyReport', $option->id)}}" class="dropdown-item" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Detail"><i class="ni ni-bullet-list-67"></i> Report</a>
-                                                    <a href="{{route('detailChart', $option->id)}}" class="dropdown-item" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Detail"><i class="ni ni-bullet-list-67"></i> Chart</a>
+                                                    <a href="{{route('filterChart', $option->id)}}" class="dropdown-item" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Detail"><i class="ni ni-bullet-list-67"></i> Chart</a>
                                                 </div>
                                             </div>
                                         </td>

@@ -13,11 +13,12 @@
                         @csrf
                         <div class="row">
                             <div class="col-md-3">
-                                <div class="form-group">
+                                <div class="form-group">                                   
                                     <label for="user_name">User Name</label>
                                     <select class="form-control @error('user_name') is-invalid @enderror" name = 'user_name' id = 'user_name' >
                                         <option value=""> Select User Name </option>
-                                        @foreach ($suranswers as $option)
+                                        
+                                        @foreach ($suranswers->unique('user_name') as $option)
                                             @if ($option->user_name != 'undefined')
                                                 <option value="{{$option->user_name}}" @if($user_name == $option->user_name) selected @endif>{{$option->user_name}}</option>
                                             @endif   
@@ -31,7 +32,7 @@
                                     <label for="company"> Company </label>
                                     <select class="form-control @error('company') is-invalid @enderror" name = 'company' id = 'company' >
                                         <option value=""> Select Company </option>
-                                        @foreach ($suranswers as $option)
+                                        @foreach ($suranswers->unique('company') as $option)
                                             @if ($option->company != 'undefined')
                                                 <option value="{{$option->company}}"  @if($company == $option->company) selected @endif>{{$option->company}}</option>
                                             @endif                                            
@@ -45,7 +46,7 @@
                                     <label for="city"> City </label>
                                     <select class="form-control @error('city') is-invalid @enderror" name = 'city' id = 'city' >
                                         <option value=""> Select City </option>
-                                        @foreach ($suranswers as $option)
+                                        @foreach ($suranswers->unique('city') as $option)
                                             @if ($option->city != 'undefined')
                                                 <option value="{{$option->city}}" @if($city == $option->city) selected @endif>{{$option->city}}</option>
                                             @endif                                            
@@ -59,7 +60,7 @@
                                     <label for="company_area"> Company Area </label>
                                     <select class="form-control @error('company_area') is-invalid @enderror" name = 'company_area' id = 'company_area' >
                                         <option value=""> Select Company Area </option>
-                                        @foreach ($suranswers as $option)
+                                        @foreach ($suranswers->unique('company_area') as $option)
                                             @if ($option->company_area != 'undefined')
                                                 <option value="{{$option->company_area}}" @if($company_area == $option->company_area) selected @endif>{{$option->company_area}}</option>
                                             @endif                                            
@@ -73,7 +74,7 @@
                                     <label for="company_level"> Company Level </label>
                                     <select class="form-control @error('company_level') is-invalid @enderror" name = 'company_level' id = 'company_level' >
                                         <option value=""> Select Company Level </option>
-                                        @foreach ($suranswers as $option)
+                                        @foreach ($suranswers->unique('company_level') as $option)
                                             @if ($option->company_level != 'undefined')
                                                 <option value="{{$option->company_level}}" @if($company_level == $option->company_level) selected @endif>{{$option->company_level}}</option>
                                             @endif                                            
@@ -87,7 +88,7 @@
                                     <label for="comany_job"> Company Job </label>
                                     <select class="form-control @error('comany_job') is-invalid @enderror" name = 'comany_job' id = 'comany_job' >
                                         <option value=""> Select Company Job </option>
-                                        @foreach ($suranswers as $option)
+                                        @foreach ($suranswers->unique('comany_job') as $option)
                                             @if ($option->comany_job != 'undefined')
                                                 <option value="{{$option->comany_job}}" @if($comany_job == $option->comany_job) selected @endif>{{$option->comany_job}}</option>
                                             @endif                                            
@@ -101,7 +102,7 @@
                                     <label for="survey_date"> Survey Date </label>
                                     <select class="form-control @error('survey_date') is-invalid @enderror" name = 'survey_date' id = 'survey_date' >
                                         <option value=""> Select Survey Date </option>
-                                        @foreach ($suranswers as $option)
+                                        @foreach ($suranswers->unique('survey_date') as $option)
                                             @if ($option->survey_date != 'undefined')
                                                 <option value="{{$option->survey_date}}" @if($survey_date == $option->survey_date) selected @endif>{{$option->survey_date}}</option>
                                             @endif                                            
@@ -207,7 +208,7 @@
                                             <th scope="col">{{ __(' ') }}</th>                                     
                                             <th scope="col" style="background-color: #595959">{{ __(' REACTIVO ') }}</th> 
                                             <th scope="col" style="background-color: #D9D9D9">{{ __(' CONVENCIONAL ') }}</th> 
-                                            <th scope="col" style="background-color: #66CCFF">{{ __(' EVOLUTIVO ') }}</th>
+                                            <th scope="col" style="background-color: #66E9FF">{{ __(' EVOLUTIVO ') }}</th>
                                             <th scope="col" style="background-color: #33CCCC">{{ __(' AGIL ') }}</th>                                                                           
                                         </tr>
                                     </thead>
@@ -844,7 +845,7 @@
                 label: 'third',
                 data: chart6_thirdValue,
                 fill: true,
-                backgroundColor: '#66CCFF',
+                backgroundColor: '#66E9FF',
                 borderColor: '',
                 pointBackgroundColor: '',
                 pointBorderColor: '#fff',

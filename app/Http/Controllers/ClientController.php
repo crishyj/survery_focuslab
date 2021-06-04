@@ -1811,8 +1811,7 @@ class ClientController extends Controller
         $chart10_label[]  = '';
         $chart10_firstValue[]  = '';
     }
-
-     
+    
 
     $sqlQuery11 = "SELECT MA.name,
         (SUM(CASE 	WHEN MR.culture_id=1 AND MR.answer=1 THEN OPCION1
