@@ -27,8 +27,8 @@ class AnswerContoller extends Controller
         $result = '';
         $options = Survey::find($request['survey_id']);
 
-        if( is_null($options->name_check) || is_null($options->company_check) || is_null($options->city_check) || is_null($options->companyarea_check)  || 
-            is_null($options->companylevel_check) || is_null($options->companyjob_check) || is_null($options->surveydate_check) ){
+        if( $options->name_check != 'on' && $options->company_check != 'on' && $options->city_check != 'on' && $options->companyarea_check != 'on'  && 
+            $options->companylevel_check != 'on' && $options->companyjob_check != 'on' && $options->surveydate_check != 'on' ){
             $result = 'empty';
         }else{
             $result = 'true';
@@ -86,12 +86,12 @@ class AnswerContoller extends Controller
             $options->save();
         }
 
-        $results = Question::where('survey_id', '=', $survey_id)->where('checked', 1)->get();
+        $results = Addquestion::where('survey_id', '=', $survey_id)->get();
 
-        if (!$results->isEmpty()) {
-            $result = 'true';
-        }else{
+        if ($results->isEmpty()) {
             $result = 'empty';
+        }else{
+            $result = 'true';
         }      
        
         return response()->json(['success'=>$result]);
