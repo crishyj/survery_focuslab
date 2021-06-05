@@ -24,10 +24,18 @@ class AnswerContoller extends Controller
     }
 
     public function checkCode(Request $request){
-       
+        $result = '';
         $options = Survey::find($request['survey_id']);
+
+        if( is_null($options->name_check) || is_null($options->company_check) || is_null($options->city_check) || is_null($options->companyarea_check)  || 
+            is_null($options->companylevel_check) || is_null($options->companyjob_check) || is_null($options->surveydate_check) ){
+            $result = 'empty';
+        }else{
+            $result = 'true';
+        }
+        
         if($options->code == $request['code']){
-            return response()->json('success');
+            return response()->json(['success'=>$result]);
         }
         else{
             return response()->json('failed');
@@ -60,6 +68,7 @@ class AnswerContoller extends Controller
     }
 
     public function queanswer(Request $request){
+        $result = '';
         $survey_id = $request['survey_id'];
         $questions = $request['questions'];
         $answers = $request['answers'];
@@ -76,8 +85,16 @@ class AnswerContoller extends Controller
             ]);
             $options->save();
         }
+
+        $results = Question::where('survey_id', '=', $survey_id)->where('checked', 1)->get();
+
+        if (!$results->isEmpty()) {
+            $result = 'true';
+        }else{
+            $result = 'empty';
+        }      
        
-        return response()->json(['success'=>$survey_id]);
+        return response()->json(['success'=>$result]);
     }
 
     public function addanswer(Request $request){

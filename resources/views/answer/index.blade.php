@@ -328,7 +328,6 @@
 
             });
 
-
             var url = window.location.href; 
             var res = url.split("/", 5);
             var survey_id = res[4];
@@ -339,6 +338,8 @@
             var temp1, temp2, temp3, temp4;
             var next = 0;
             var next1 = 0;
+            var step2_check = '';
+            var step4_check = '';
 
             $('#confirm_codeBtn').click(function(e){
                 e.preventDefault();
@@ -357,13 +358,20 @@
                     contentType: false,
                     processData: false,
                     success:function(response) {
-                        console.log(response);
-                        if (response == 'success'){        
-                            $('.step1').css('display', 'none');                
-                            $('.step2').css('display', 'block');
-                        }else if(response == 'failed'){
+                        // console.log(response);                        
+
+                        if(response == 'failed'){
                             alert('The code is invalid');
                             $('.confirm_form').trigger('reset');
+                        }else{
+                            step2_check = response.success;
+                            if(step2_check == 'empty'){
+                                $('.step1').css('display', 'none');                
+                                $('.step3').css('display', 'block');
+                            }else{
+                                $('.step1').css('display', 'none');                
+                                $('.step2').css('display', 'block');
+                            }
                         }
                     },
                     error:function (response) {
@@ -424,10 +432,9 @@
                     contentType: false,
                     processData: false,
                     success:function(response) {
-                        console.log(response);
+                        // console.log(response);
                        if(response == 'failed'){
-                            alert('The code is invalid');
-                            $('.confirm_form').trigger('reset');
+                            
                         }else{
                             suranswer_id = response.success;
                             console.log(suranswer_id);
@@ -478,9 +485,21 @@
                     contentType: false,
                     processData: false,
                     success:function(response) {
-                        console.log(response);
-                        $('.step3').css('display', 'none');
-                        $('.step4').css('display', 'block');                        
+                        // console.log(response);
+
+                        if(response == 'failed'){
+                            alert('Something went wrong.');
+                            
+                        }else{
+                            step4_check = response.success;
+                            if(step4_check == 'empty'){
+                                $('.step3').css('display', 'none');
+                                $('.step5').css('display', 'block');  
+                            }else{
+                                $('.step3').css('display', 'none');
+                                $('.step4').css('display', 'block');  
+                            }
+                        }                     
                     },
                     error:function (response) {
                         if (response.status == 422) { 
@@ -529,7 +548,7 @@
                     contentType: false,
                     processData: false,
                     success:function(response) {
-                        console.log(response);
+                        // console.log(response);
                         $('.step4').css('display', 'none');
                         $('.step5').css('display', 'block');                        
                     },
