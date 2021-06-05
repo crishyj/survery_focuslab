@@ -544,12 +544,14 @@ class AdminController extends Controller
         $survey_id = $request['survey_id'];
         $questions = $request['questions'];
         $checks = $request['checks'];
-        $questions = explode(",", $questions);
-        $checks = explode(",", $checks);
-        for ($i = 0; $i < count($questions) ; $i++) { 
+        $questions1 = explode("&&,", $questions);
+        $checks1 = explode(",", $checks);           
+       
+        for ($i = 0; $i < count($questions1) ; $i++) { 
+                        
             $options = new Question([
-                'name' => $questions[$i],
-                'checked' => $checks[$i],
+                'name' =>str_replace('&&', '', $questions1[$i]) ,
+                'checked' => $checks1[$i],
                 'survey_id' => $request['survey_id'],                
                 'evaluation_id' => $i+1,
             ]);

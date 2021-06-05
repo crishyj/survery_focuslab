@@ -560,16 +560,14 @@
                             $('.question_form').css('display', 'block');
                             var i = response.success.length;
                             questions = response.success;
-                            $survey_id = response.success[i-1];
-                            
-                            console.log(questions);
+                            $survey_id = response.success[i-1];                          
 
                             $('.survey_id').val($survey_id);
                             $('question0').val(questions[0]);
                             for(j = 0; j < i-1; j++){
                                 var addto = "#field" + next;
                                 next = next + 1;
-                                var newIn = ' <div id="field'+ next +'" name="field'+ next +'"><div class="form-group row"><label for="question'+next+'" class="col-md-4 col-form-label text-md-right">Question'+next+'</label><div class="input-group col-md-6"><div class="input-group-prepend"><div class="input-group-text"><input type="checkbox" id="question_check'+next+'" name="question_check'+next+'"></div></div><input type="text" name="question'+next+'" id="question'+next+'" class="form-control input-md" value="'+questions[j]+'" autocomplete="question'+next+'" autofocus></div></div></div>';
+                                var newIn = ' <div id="field'+ next +'" name="field'+ next +'"><div class="form-group row"><label for="question'+next+'" class="col-md-4 col-form-label text-md-right">Question'+next+'</label><div class="input-group col-md-6"><div class="input-group-prepend"><div class="input-group-text"><input type="checkbox" id="question_check'+next+'" name="question_check'+next+'"></div></div><input type="text" name="question'+next+'" id="question'+next+'" class="form-control input-md" value="'+questions[j]+'&&" autocomplete="question'+next+'" autofocus readonly></div></div></div>';
                                 var newInput = $(newIn);
                                 $(addto).after(newInput);
                                 $("#field" + next).attr('data-source',$(addto).attr('data-source'));
@@ -604,7 +602,7 @@
                 check_array.push(temp2);
                 temp1 = '';
                 temp2 = '';
-            }
+            }         
 
             let _token = $('input[name=_token]').val();
             let survey_id = $('#survey_id').val();
@@ -614,6 +612,7 @@
             form_data.append("survey_id", survey_id);
             form_data.append("questions", question_array);
             form_data.append("checks", check_array);
+           
 
             $.ajax({
                 url: "{{ route('storeQuestion') }}",

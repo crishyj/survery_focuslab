@@ -1,5 +1,20 @@
 @extends('layouts.frontend')
 
+@push('css')
+
+    <style>
+        .fas{
+            font-size: 20px;
+            color: #474754;
+        }
+
+        .carousel-control-next, .carousel-control-prev{
+            top: unset !important;
+        }
+    </style>
+    
+@endpush
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -33,7 +48,7 @@
                                             </div>
                                             
                                             <div class="form-group text-center">
-                                                <button class="btn btn-primary confirm_btn" id="confirm_btn">Confirm</button>
+                                                <button class="btn btn-success confirm_codeBtn" id="confirm_codeBtn">Confirm</button>
                                             </div>
                                         </form>
                                     </div>
@@ -49,17 +64,7 @@
                                                 Antes de responder el cuestionario de evaluacion de cultura, por favor responda las siguientes preguntas
                                             </h3>
                                         </div>
-
-                                    {{-- <div class="row mb-4">
-                                        <div class="col-12">
-                                            <div class="progress-wrapper ">                                               
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-info" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">25%</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> --}}
-                                   
+                                  
                                     
                                         @if ($option->name_check == 'on')
                                             <div class="form-group row">    
@@ -172,53 +177,69 @@
                                         </h3>
                                     </div>
 
-                                    <div class="row mb-4">
-                                        <div class="col-12">
-                                            <div class="progress-wrapper ">                                               
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-info" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">25%</div>
+                                    
+                                    <div id="demo" class="carousel slide" data-ride="carousel" data-interval="false">
+                                        <div class="carousel-inner">
+                                            @php $i = 1; @endphp
+                                        
+                                            @foreach ($questions as $item)
+                                           
+                                            
+                                                <div class="carousel-item @if ($i == 1) active @endif">
+                                                    <div class="progress-wrapper ">                                               
+                                                        <div class="progress">
+                                                            <div class="progress-bar bg-info" role="progressbar" aria-valuenow="{{ceil($i * 100 /count($questions))}}" aria-valuemin="0" aria-valuemax="100" style="width: {{ceil($i * 100 /count($questions))}}%;">{{ceil($i * 100 /count($questions))}}%</div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row mb-5">    
+                                                        <label for="queanswer" class="col-md-4 col-form-label text-md-right">{{$item->name}}</label>                         
+                                                        <div class="col-md-6">
+                                                            <div class="custom-control custom-radio custom-control-inline">
+                                                                <input type="radio" id="{{$i}}-1" name="question{{$i}}" class="custom-control-input" data-id="{{$item->id}}" value="1" checked>
+                                                                <label class="custom-control-label" for="{{$i}}-1">Casi nunca</label>
+                                                            </div>
+                                                            <div class="custom-control custom-radio custom-control-inline">
+                                                                <input type="radio" id="{{$i}}-2" name="question{{$i}}" class="custom-control-input" value="2" data-id="{{$item->id}}">
+                                                                <label class="custom-control-label" for="{{$i}}-2">Algunas veces</label>
+                                                            </div>
+                                                            <div class="custom-control custom-radio custom-control-inline">
+                                                                <input type="radio" id="{{$i}}-3" name="question{{$i}}" class="custom-control-input" value="3" data-id="{{$item->id}}">
+                                                                <label class="custom-control-label" for="{{$i}}-3">Casi siempre</label>
+                                                            </div>
+                                                            <div class="custom-control custom-radio custom-control-inline">
+                                                                <input type="radio" id="{{$i}}-4" name="question{{$i}}" class="custom-control-input" value="4" data-id="{{$item->id}}">
+                                                                <label class="custom-control-label" for="{{$i}}-4">Siempre</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    @if ($questions->last()->id == $item->id)
+                                                        <div class="form-group row">
+                                                            <div class="col-md-12 nav_button">
+                                                                                                        
+                                                                <div class="next_step4 btn btn-success">
+                                                                    Next
+                                                                </div>
+                                                            </div>                                       
+                                                        </div>
+                                                    @endif
+
                                                 </div>
-                                            </div>
+                                                @php $i++; @endphp
+                                            @endforeach
                                         </div>
+
+                                        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                                            <i class="fas fa-chevron-circle-left"></i>
+                                        </a>
+                                        <a class="carousel-control-next" href="#demo" data-slide="next">
+                                            <i class="fas fa-chevron-circle-right"></i>
+                                        </a>
                                     </div>
 
-                                    @php $i = 1; @endphp
-        
-                                    @foreach ($questions as $item)
-                                        <div class="form-group row">    
-                                            <label for="queanswer" class="col-md-4 col-form-label text-md-right">{{$item->name}}</label>                         
-                                            <div class="col-md-6">
-                                                <div class="custom-control custom-radio custom-control-inline">
-                                                    <input type="radio" id="{{$i}}-1" name="question{{$i}}" class="custom-control-input" data-id="{{$item->id}}" value="1" checked>
-                                                    <label class="custom-control-label" for="{{$i}}-1">Casi nunca</label>
-                                                </div>
-                                                <div class="custom-control custom-radio custom-control-inline">
-                                                    <input type="radio" id="{{$i}}-2" name="question{{$i}}" class="custom-control-input" value="2" data-id="{{$item->id}}">
-                                                    <label class="custom-control-label" for="{{$i}}-2">Algunas veces</label>
-                                                </div>
-                                                <div class="custom-control custom-radio custom-control-inline">
-                                                    <input type="radio" id="{{$i}}-3" name="question{{$i}}" class="custom-control-input" value="3" data-id="{{$item->id}}">
-                                                    <label class="custom-control-label" for="{{$i}}-3">Casi siempre</label>
-                                                </div>
-                                                <div class="custom-control custom-radio custom-control-inline">
-                                                    <input type="radio" id="{{$i}}-4" name="question{{$i}}" class="custom-control-input" value="4" data-id="{{$item->id}}">
-                                                    <label class="custom-control-label" for="{{$i}}-4">Siempre</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @php $i++; @endphp
-                                    @endforeach
                                     <input type="hidden" name="questions" id="questions" value="{{$i}}">
                                     <input type="hidden" name="suranswer_id" class="suranswer_id" id="suranswer_id">
-
-                                    <div class="form-group row">
-                                        <div class="col-md-12 nav_button">
-                                                                                    
-                                            <div class="next_step4 btn btn-success">
-                                                Next
-                                            </div>
-                                        </div>                                       
-                                    </div>
 
                                 </div>
                                 
@@ -227,17 +248,7 @@
                                         <h3>
                                             Hay algunas pregntas adicionales que deseamos hacerle antes de finalizer esta encuesta. Por favor tómese un par de minutos mas para responderlas.
                                         </h3>
-                                    </div>
-
-                                    {{-- <div class="row mb-4">
-                                        <div class="col-12">
-                                            <div class="progress-wrapper ">                                               
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-info" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">75%</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> --}}
+                                    </div>                                  
 
                                     @php $j = 1; @endphp  
                                     @foreach ($addquesions as $item)
@@ -293,9 +304,31 @@
 </div>
 @endsection
 
+
+
 @push('js')
     <script>
         $(document).ready(function(){
+
+            $('#demo').carousel({
+                // interval: 1000,
+                wrap: false
+            });
+
+            $('#demo').on('slid.bs.carousel', '', function() {
+                var $this = $(this);
+
+                $this.children('.carousel-control').show();
+
+                if($('.carousel-inner .item:first').hasClass('active')) {
+                    $this.children('.left.carousel-control').hide();
+                } else if($('.carousel-inner .item:last').hasClass('active')) {
+                    $this.children('.right.carousel-control').hide();
+                }
+
+            });
+
+
             var url = window.location.href; 
             var res = url.split("/", 5);
             var survey_id = res[4];
@@ -307,7 +340,7 @@
             var next = 0;
             var next1 = 0;
 
-            $('#confirm_btn').click(function(e){
+            $('#confirm_codeBtn').click(function(e){
                 e.preventDefault();
                 let _token = $('input[name=_token]').val();
                 let code = $('#code').val();
