@@ -13,8 +13,8 @@
                         <div class="detail_value">
                             Basic Answers
                         </div>
-                        <table class="table align-items-center table-flush text-center"  id="datatable-basic">
-                            <thead class="thead-light">
+                        <table class="table align-items-center table-flush"  id="datatable-basic">
+                            <thead class="thead-light text-center">
                                 <tr>    
                                     <th scope="col">{{ __(' ID ') }}</th>                               
                                     <th scope="col">{{ __(' User Name') }}</th>                                     

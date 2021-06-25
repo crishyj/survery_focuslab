@@ -79,3 +79,17 @@
 .input-group-prepend{
     border: solid 1px #dee2e6;
 }
+
+.table .odd{
+    background-color: #fff;
+}
+
+
+.table .even{
+    background-color: #f6f9fc;
+}
+
+.card-header{
+    background-color: #0089A8;
+    color: #fff;
+}
